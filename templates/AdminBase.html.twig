@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block head %}{% include('admin/head.html.twig') %}{% endblock %}
+</head>
+<body class="theme-red">
+
+{% block overlayandsearch %}{% include('admin/overlayandsearch.html.twig') %}{% endblock %}
+{% block topbar %}{% include('admin/topbar.html.twig') %}{% endblock %}
+<section>
+{% block left_sidebar %}{% include('admin/left_sidebar.html.twig') %}{% endblock %}
+{% block right_sidebar %}{% include('admin/overlayandsearch.html.twig') %}{% endblock %}
+</section>
+{% block body %}{% include('admin/index.html.twig') %}{% endblock %}
+{% block footer %}{% include('admin/footer.html.twig') %}{% endblock %}
+</body>
+</html>
