@@ -6,8 +6,8 @@
                 <img src="{{ asset('assets') }}/admin/images/user.png" width="48" height="48" alt="User" />
             </div>
             <div class="info-container">
-                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                <div class="email">john.doe@example.com</div>
+                <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ali Bey</div>
+                <div class="email">alihaydar338@gmail.com</div>
                 <div class="btn-group user-helper-dropdown">
                     <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                     <ul class="dropdown-menu pull-right">
@@ -26,7 +26,36 @@
         <!-- Menu -->
         <div class="menu">
             <ul class="list">
-                <li class="header">MAIN NAVIGATION</li>
+                <li class="header">Admin Menu</li>
+
+                <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                        <i class="material-icons">view_list</i>
+                        <span>Kiralamalar</span>
+                    </a>
+                    <ul class="ml-menu">
+                        <li>
+                            <a href="">Yeni</a>
+                        </li>
+                        <li>
+                            <a href="">Kabul Edilen</a>
+                        </li>
+                        <li>
+                            <a href="">Iptal Edilen</a>
+                        </li>
+                        <li>
+                            <a href="">Tamamlanan</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/admin/category">
+                        <i class="material-icons">widgets</i>
+                        <span>Kategori</span>
+                    </a>
+                </li>
+
+                <!--
                 <li>
                     <a href="{{ asset('assets') }}/admin/index.html">
                         <i class="material-icons">home</i>
@@ -362,6 +391,7 @@
                         <span>Information</span>
                     </a>
                 </li>
+                -->
             </ul>
         </div>
         <!-- #Menu -->
