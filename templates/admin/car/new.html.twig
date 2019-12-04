@@ -1,0 +1,21 @@
+{% extends 'Adminbase.html.twig' %}
+
+{% block title %}New Car{% endblock %}
+
+{% block body %}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="card">
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+    <h1>Create new Car</h1>
+
+    {{ include('admin/car/_form.html.twig') }}
+
+    <a href="{{ path('car_index') }}" class="btn bg-deep-purple waves-effect">back to list</a>
+        </div>
+    </div>
+</section>
+    </div>
+</div>
+{% endblock %}

@@ -44,7 +44,7 @@ class Car
     private $status;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $created_at;
 
@@ -152,6 +152,10 @@ class Car
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="car")
      */
     private $comments;
+
+    public function __toString() {
+        return $this->title;
+    }
 
     public function __construct()
     {
