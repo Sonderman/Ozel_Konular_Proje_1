@@ -153,6 +153,11 @@ class Car
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $detail;
+
     public function __toString() {
         return $this->title;
     }
@@ -526,6 +531,18 @@ class Car
                 $comment->setCar(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDetail(): ?string
+    {
+        return $this->detail;
+    }
+
+    public function setDetail(?string $detail): self
+    {
+        $this->detail = $detail;
 
         return $this;
     }

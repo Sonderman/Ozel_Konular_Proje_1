@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Car;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -53,6 +54,11 @@ class CarType extends AbstractType
             ->add('category')
             ->add('owner')
             ->add('contract')
+            ->add('detail',CKEditorType::class,array(
+                'config'=>array(
+                    'uiColor'=>'#ffffff',
+                )
+            ))
         ;
     }
 
