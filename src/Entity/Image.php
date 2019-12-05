@@ -15,13 +15,6 @@ class Image
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Car", inversedBy="images")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $car;
-
     /**
      * @ORM\Column(type="string", length=100)
      */
@@ -30,23 +23,16 @@ class Image
     /**
      * @ORM\Column(type="string", length=150)
      */
-    private $image_dir;
+    private $image;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Car", inversedBy="images")
+     */
+    private $car;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getCar(): ?Car
-    {
-        return $this->car;
-    }
-
-    public function setCar(?Car $car): self
-    {
-        $this->car = $car;
-
-        return $this;
     }
 
     public function getTitle(): ?string
@@ -61,14 +47,26 @@ class Image
         return $this;
     }
 
-    public function getImageDir(): ?string
+    public function getImage(): ?string
     {
-        return $this->image_dir;
+        return $this->image;
     }
 
-    public function setImageDir(string $image_dir): self
+    public function setImage(string $image): self
     {
-        $this->image_dir = $image_dir;
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCar(): ?Car
+    {
+        return $this->car;
+    }
+
+    public function setCar(?Car $car): self
+    {
+        $this->car = $car;
 
         return $this;
     }

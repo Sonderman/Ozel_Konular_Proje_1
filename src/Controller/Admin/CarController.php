@@ -41,7 +41,7 @@ class CarController extends AbstractController
             /** @var file $file */
             $file =$form['image']->getData();
             if($file){
-                $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtention();
+                $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
                 try{
                     $file->move(
                         $this->getParameter('image_directory'),
@@ -89,7 +89,7 @@ class CarController extends AbstractController
             /** @var file $file */
             $file =$form['image']->getData();
             if($file){
-                $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtention();
+                $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
                 try{
                     $file->move(
                         $this->getParameter('image_directory'),

@@ -16,6 +16,7 @@
 
         <thead>
             <tr>
+                <th>Image_Gallery</th>
                 <th>Id</th>
                 <th>Title</th>
                 <th>Keywords</th>
@@ -45,6 +46,10 @@
         <tbody>
         {% for car in cars %}
             <tr>
+                <td>
+                    <a href="javascript:window.open('{{ path('image_new',{'id': car.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
+                        <img src="{{ asset('assets/admin/icons/gallery.png') }}" height="40"></a>
+                </td>
                 <td>{{ car.id }}</td>
                 <td>{{ car.title }}</td>
                 <td>{{ car.keywords }}</td>
