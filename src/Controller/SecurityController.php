@@ -10,13 +10,13 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/login", name="app_login")
+     * @Route("/login", name="user_login")
      */
-    public function loginuser(AuthenticationUtils $authenticationUtils): Response
+    public function loginUser(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('');
-        // }
+         if ($this->getUser()) {
+             return $this->redirectToRoute('');
+         }
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -29,7 +29,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/admin/login", name="admin_login")
      */
-    public function loginadmin(AuthenticationUtils $authenticationUtils): Response
+    public function loginAdmin(AuthenticationUtils $authenticationUtils): Response
     {
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
@@ -45,6 +45,7 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/logout", name="app_logout")
+     * @throws \Exception
      */
     public function logout()
     {

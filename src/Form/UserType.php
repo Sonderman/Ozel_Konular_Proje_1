@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -22,8 +23,8 @@ class UserType extends AbstractType
 
             ->add('roles',ChoiceType::class,[
                 'choices'=>[
-                    'Admin'=>'[ROLE_ADMIN]',
-                    'User'=>'[ROLE_USER]',
+                    'Admin'=>'ROLE_ADMIN',
+                    'User'=>'ROLE_USER',
                 ],
             ])
             ->add('password', PasswordType::class, [
@@ -60,12 +61,21 @@ class UserType extends AbstractType
             ])
             ->add('status',ChoiceType::class,[
                 'choices'=>[
-                    'True'=>'True',
-                    'False'=>'False'
+                    'Active'=>'True',
+                    'Passive'=>'False'
                 ],
             ])
 
         ;
+        $builder->get('roles')
+            ->addModelTransformer(new CallbackTransformer(
+               function ($rolesArray){
+                   return count($rolesArray)? $rolesArray[0] : null;
+               },
+                function ($rolesString){
+                   return [$rolesString];
+                }
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
