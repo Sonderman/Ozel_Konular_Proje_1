@@ -17,7 +17,7 @@
                 <th>Id</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Password</th>
+
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Image</th>
@@ -33,10 +33,10 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
+
                 <td>{{ user.name }}</td>
                 <td>{{ user.surname }}</td>
-                <td>{{ user.image }}</td>
+                <td><img src="{{ asset('uploads/images/' ~ user.image) }}" height="100"></td>
                 <td>{{ user.status }}</td>
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
