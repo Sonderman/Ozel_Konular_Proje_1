@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Car;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -33,9 +34,12 @@ class CarType extends AbstractType
                     ])
                 ]
             ])
-            ->add('status')
-            ->add('created_at')
-            ->add('updated_at')
+            ->add('status',ChoiceType::class,[
+                'choices'=>[
+                    'True'=>'True',
+                    'False'=>'False'
+                ],
+            ])
             ->add('category_id')
             ->add('contract_id')
             ->add('rate')
