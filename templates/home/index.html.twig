@@ -1,8 +1,8 @@
 {% extends 'HomeBase.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
-{% block keywords %}Hello HomeController!{% endblock %}
-{% block description %}Hello HomeController!{% endblock %}
+{% block title %}{{data[0].title}}{% endblock %}
+{% block keywords %}{{data[0].keywords}}{% endblock %}
+{% block description %}{{data[0].description}}{% endblock %}
 
 {% block body %}
     {% block sliderarea %}{% include('home/slider_area.html.twig') %}{% endblock %}

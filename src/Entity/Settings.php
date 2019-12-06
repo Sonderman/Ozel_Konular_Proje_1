@@ -96,20 +96,24 @@ class Settings
      */
     private $aboutus;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $contact;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $reference;
+
+
 
     /**
      * @ORM\Column(type="string", length=15)
      */
     private $status;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $contact;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $reference;
 
     public function getId(): ?int
     {
@@ -308,12 +312,30 @@ class Settings
         return $this;
     }
 
+
+
+
+
+
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
     public function getContact(): ?string
     {
         return $this->contact;
     }
 
-    public function setContact(string $contact): self
+    public function setContact(?string $contact): self
     {
         $this->contact = $contact;
 
@@ -328,18 +350,6 @@ class Settings
     public function setReference(?string $reference): self
     {
         $this->reference = $reference;
-
-        return $this;
-    }
-
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(string $status): self
-    {
-        $this->status = $status;
 
         return $this;
     }
