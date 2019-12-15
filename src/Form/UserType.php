@@ -59,6 +59,7 @@ class UserType extends AbstractType
                     ])
                 ]
             ])
+
             ->add('status',ChoiceType::class,[
                 'choices'=>[
                     'Active'=>'True',

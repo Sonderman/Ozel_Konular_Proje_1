@@ -65,6 +65,11 @@ class User implements UserInterface
      */
     private $updated_at;
 
+    public function __toString() :string
+    {
+        return $this->status;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

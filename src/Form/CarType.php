@@ -19,7 +19,9 @@ class CarType extends AbstractType
             ->add('title')
             ->add('keywords')
             ->add('description')
+
             //resim almak için burası ekledi
+
             ->add('image',FileType::class,[
                 'label' => 'Car Image',
                 'mapped'=> false,
@@ -34,14 +36,14 @@ class CarType extends AbstractType
                     ])
                 ]
             ])
+
             ->add('status',ChoiceType::class,[
                 'choices'=>[
-                    'True'=>'True',
-                    'False'=>'False'
+                    'Active'=>'active',
+                    'Passive'=>'passive'
                 ],
             ])
-            ->add('category_id')
-            ->add('contract_id')
+
             ->add('rate')
             ->add('seats')
             ->add('doors')
@@ -58,6 +60,7 @@ class CarType extends AbstractType
             ->add('category')
             ->add('owner')
             ->add('contract')
+
             ->add('detail',CKEditorType::class,array(
                 'config'=>array(
                     'uiColor'=>'#ffffff',
