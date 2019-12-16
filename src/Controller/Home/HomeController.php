@@ -9,8 +9,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
-     */
+ * @Route("/", name="home")
+ */
     public function index(SettingsRepository $settingsRepository)
     {
         $data = $settingsRepository->findBy(['id'=>1]);
@@ -19,4 +19,6 @@ class HomeController extends AbstractController
             'data'=>$data,
         ]);
     }
+
+
 }

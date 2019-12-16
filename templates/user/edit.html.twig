@@ -1,13 +1,49 @@
-{% extends 'base.html.twig' %}
+{% extends 'HomeBase.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
+{% block title %}{{ app.user.name }} Profile{% endblock %}
+
+<!--== Page Title Area Start ==-->
+<section id="page-title-area" class="section-padding overlay">
+    <div class="container">
+        <div class="row">
+            <!-- Page Title Start -->
+            <div class="col-lg-12">
+                <div class="section-title  text-center align-center">
+                    <h2>{{ app.user.name }} Profile</h2>
+                    <span class="title-line"><i class="fa fa-car"></i></span>
+
+                </div>
+            </div>
+            <!-- Page Title End -->
+        </div>
+    </div>
+</section>
+<!--== Page Title Area End ==-->
 
 {% block body %}
-    <h1>Edit User</h1>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+    <section id="maincontent" class="padding30">
+        <div class="container">
+            <div class="row">
 
-    <a href="{{ path('user_index') }}">back to list</a>
+                {{ include('user/usermenu.html.twig') }}
 
-    {{ include('user/_delete_form.html.twig') }}
+                <div class="span8">
+                    <!-- start article 1 -->
+                    <article class="blog-post">
+                        <div class="post-heading">
+                            <h3><a href="#">User Profile Information</a></h3>
+                        </div>
+                        <div class="row">
+
+                            {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
 {% endblock %}
+

@@ -7,6 +7,8 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Security\MyAuthenticator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,6 +27,20 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var file $file */
+            $file =$form['image']->getData();
+            if($file) {
+                $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
+                try {
+                    $file->move(
+                        $this->getParameter('image_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e) {
+
+                }
+                $user->setImage($fileName);
+            }
             // encode the plain password
             $user->setPassword(
                 $passwordEncoder->encodePassword(
@@ -44,11 +60,17 @@ class RegistrationController extends AbstractController
                 $request,
                 $authenticator,
                 'main' // firewall name in security.yaml
-            );
+            ) ? : new RedirectResponse('/');
         }
 
         return $this->render('registration/adminregister.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
+    }
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName(){
+        return md5(uniqid());
     }
 }

@@ -42,7 +42,7 @@
         <div class="container">
             <div class="row">
                 <!--== Logo Start ==-->
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <a href="index.html" class="logo">
                         <img src="{{ asset('assets') }}/home/assets/img/logo.png" alt="JSOFT">
                     </a>
@@ -50,7 +50,7 @@
                 <!--== Logo End ==-->
 
                 <!--== Main Menu Start ==-->
-                <div class="col-lg-8 d-none d-xl-block">
+                <div class="col-md-10 d-none d-xl-block">
                     <nav class="mainmenu alignright">
                         <ul>
                             <li class="active"><a href="#">Home</a>
@@ -89,6 +89,24 @@
                                 </ul>
                             </li>
                             <li><a href="contact.html">Contact</a></li>
+                            <li>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                                <a href="/user">
+                                    {{ app.user.name }} {{ app.user.surname }}
+                                    <img src="{{ asset('uploads/images/' ~ app.user.image)}}" style="height: 30px"/>
+                                    </a>
+                            {% else %}
+                                <li>
+                                    <a href="/loginuser">Login</a>
+                                </li>
+                            {% endif %}
+                            </li>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li>
+                                <a href="/logout">Logout</a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </nav>
                 </div>
