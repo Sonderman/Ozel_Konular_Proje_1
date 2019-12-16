@@ -25,7 +25,7 @@
                 <div class="login-form">
                     <h3>Welcome Back!</h3>
 
-                    <form id="sign_in" method="post" action="/loginuser">
+                    <form id="sign_in" method="post" action="/login">
                         {% if error %}
                             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}

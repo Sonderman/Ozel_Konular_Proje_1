@@ -38,7 +38,7 @@ class MyAuthenticator extends AbstractFormLoginAuthenticator
 
     public function supports(Request $request)
     {
-        return 'user_login' === $request->attributes->get('_route')
+        return 'app_login' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
@@ -86,11 +86,11 @@ class MyAuthenticator extends AbstractFormLoginAuthenticator
         }
 
        // return new RedirectResponse($this->urlGenerator->generate('user_login'));
-       // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+
     }
 
     protected function getLoginUrl()
     {
-        return $this->urlGenerator->generate('user_login');
+        return $this->urlGenerator->generate('app_login');
     }
 }

@@ -37,7 +37,7 @@
     <div class="card">
         <div class="body">
 
-            <form id="sign_in" method="post" action="/loginadmin">
+            <form  method="post" action="/login">
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
