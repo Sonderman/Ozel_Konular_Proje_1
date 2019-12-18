@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Home;
 
 use App\Entity\Car;
-use App\Form\CarType;
+use App\Form\Car1Type;
 use App\Repository\CarRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -12,27 +12,27 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("admin/car")
+ * @Route("/user/cars")
  */
 class CarController extends AbstractController
 {
     /**
-     * @Route("/", name="admin_car_index", methods={"GET"})
+     * @Route("/", name="user_car_index", methods={"GET"})
      */
     public function index(CarRepository $carRepository): Response
     {
-        return $this->render('admin/car/index.html.twig', [
+        return $this->render('home/car/index.html.twig', [
             'cars' => $carRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="admin_car_new", methods={"GET","POST"})
+     * @Route("/new", name="user_car_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
         $car = new Car();
-        $form = $this->createForm(CarType::class, $car);
+        $form = $this->createForm(Car1Type::class, $car);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -56,36 +56,35 @@ class CarController extends AbstractController
             $entityManager->persist($car);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_car_index');
+            return $this->redirectToRoute('user_car_index');
         }
 
-        return $this->render('admin/car/new.html.twig', [
+        return $this->render('home/car/new.html.twig', [
             'car' => $car,
             'form' => $form->createView(),
         ]);
     }
 
-
     /**
-     * @Route("/{id}", name="admin_car_show", methods={"GET"})
+     * @Route("/{id}", name="user_car_show", methods={"GET"})
      */
     public function show(Car $car): Response
     {
-        return $this->render('admin/car/show.html.twig', [
+        return $this->render('home/car/show.html.twig', [
             'car' => $car,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="admin_car_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="user_car_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Car $car): Response
     {
-        $form = $this->createForm(CarType::class, $car);
+        $form = $this->createForm(Car1Type::class, $car);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //dosya ekleme işlemi için
+            // resim almak için burasıda eklendi ve services.yaml de de dosya yolu belirtilmeli
             /** @var file $file */
             $file =$form['image']->getData();
             if($file){
@@ -100,18 +99,17 @@ class CarController extends AbstractController
                 }
                 $car->setImage($fileName);
             }
-
+            // resim upload kodları burada bitiyor
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_car_index');
+            return $this->redirectToRoute('user_car_index');
         }
 
-        return $this->render('admin/car/edit.html.twig', [
+        return $this->render('home/car/edit.html.twig', [
             'car' => $car,
             'form' => $form->createView(),
         ]);
     }
-
     /**
      * @return string
      */
@@ -120,7 +118,7 @@ class CarController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin_car_delete", methods={"DELETE"})
+     * @Route("/{id}", name="user_car_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Car $car): Response
     {
@@ -130,6 +128,6 @@ class CarController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('admin_car_index');
+        return $this->redirectToRoute('user_car_index');
     }
 }

@@ -22,7 +22,7 @@ class UserController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('user/show.html.twig');
+        return $this->render('home/user/show.html.twig');
 
     }
 
@@ -31,23 +31,16 @@ class UserController extends AbstractController
      */
     public function comments(): Response
     {
-        return $this->render('user/comments.html.twig');
+        return $this->render('home/user/comments.html.twig');
 
     }
-    /**
-     * @Route("/cars", name="user_cars", methods={"GET"})
-     */
-    public function cars(): Response
-    {
-        return $this->render('user/cars.html.twig');
 
-    }
     /**
      * @Route("/reservations", name="user_reservations", methods={"GET"})
      */
     public function reservations(): Response
     {
-        return $this->render('user/reservations.html.twig');
+        return $this->render('home/user/reservations.html.twig');
     }
 
     /**
@@ -88,7 +81,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_index');
         }
 
-        return $this->render('user/new.html.twig', [
+        return $this->render('home/user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
@@ -99,7 +92,7 @@ class UserController extends AbstractController
      */
     public function show(User $user): Response
     {
-        return $this->render('user/show.html.twig', [
+        return $this->render('home/user/show.html.twig', [
             'user' => $user,
         ]);
     }
@@ -145,7 +138,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_index');
         }
 
-        return $this->render('user/edit.html.twig', [
+        return $this->render('home/user/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);

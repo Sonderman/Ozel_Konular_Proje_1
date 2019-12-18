@@ -1,0 +1,138 @@
+{% extends 'HomeBase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile{% endblock %}
+
+
+{% block body %}
+
+    <!--== Page Title Area Start ==-->
+    <section id="page-title-area" class="section-padding overlay">
+        <div class="container">
+            <div class="row">
+                <!-- Page Title Start -->
+                <div class="col-lg-12">
+                    <div class="section-title  text-center align-center">
+                        <h2>{{ app.user.name }} Profile</h2>
+                        <span class="title-line"><i class="fa fa-car"></i></span>
+
+                    </div>
+                </div>
+                <!-- Page Title End -->
+            </div>
+        </div>
+    </section>
+    <!--== Page Title Area End ==-->
+
+    <section id="maincontent" class="padding30">
+        <div class="container">
+            <div class="row">
+
+                {{ include('home/user/usermenu.html.twig') }}
+
+                <div class="span8">
+                    <!--== Content ==-->
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card">
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <div class="block-header">
+
+                                        <h1>Car index</h1>
+
+                                        <div class="body table-responsive">
+                                            <table class="table table-hover">
+
+                                                <thead>
+                                                <tr>
+                                                    <th>Image_Gallery</th>
+                                                    <th>Id</th>
+                                                    <th>Title</th>
+                                                    <th>Keywords</th>
+                                                    <th>Description</th>
+                                                    <th>Image</th>
+                                                    <th>Status</th>
+                                                    <th>Created_at</th>
+                                                    <th>Updated_at</th>
+                                                    <th>Category_id</th>
+                                                    <th>Contract_id</th>
+                                                    <th>Rate</th>
+                                                    <th>Seats</th>
+                                                    <th>Doors</th>
+                                                    <th>Has_airconditions</th>
+                                                    <th>Gearbox</th>
+                                                    <th>Transmission</th>
+                                                    <th>Fuel_type</th>
+                                                    <th>Baggage_capacity</th>
+                                                    <th>Brand</th>
+                                                    <th>Model</th>
+                                                    <th>Year</th>
+                                                    <th>Price_for_a_day</th>
+                                                    <th>Owner_id</th>
+                                                    <th>actions</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for car in cars %}
+                                                    <tr>
+                                                        <td>
+                                                            <a href="javascript:window.open('{{ path('image_new',{'id': car.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
+                                                                <img src="{{ asset('assets/admin/icons/gallery.png') }}"
+                                                                     height="40"></a>
+                                                        </td>
+                                                        <td>{{ car.id }}</td>
+                                                        <td>{{ car.title }}</td>
+                                                        <td>{{ car.keywords }}</td>
+                                                        <td>{{ car.description }}</td>
+                                                        <td><img src="{{ asset('uploads/images/' ~ car.image) }}"
+                                                                 height="40"></td>
+                                                        <td>{{ car.status }}</td>
+                                                        <td>{{ car.createdAt ? car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                                        <td>{{ car.updatedAt ? car.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                                        <td>{{ car.categoryId }}</td>
+                                                        <td>{{ car.contractId }}</td>
+                                                        <td>{{ car.rate }}</td>
+                                                        <td>{{ car.seats }}</td>
+                                                        <td>{{ car.doors }}</td>
+                                                        <td>{{ car.hasAirconditions ? 'Yes' : 'No' }}</td>
+                                                        <td>{{ car.gearbox }}</td>
+                                                        <td>{{ car.transmission }}</td>
+                                                        <td>{{ car.fuelType }}</td>
+                                                        <td>{{ car.baggageCapacity }}</td>
+                                                        <td>{{ car.brand }}</td>
+                                                        <td>{{ car.model }}</td>
+                                                        <td>{{ car.year }}</td>
+                                                        <td>{{ car.priceForADay }}</td>
+                                                        <td>{{ car.ownerId }}</td>
+                                                        <td>
+                                                            <a href="{{ path('user_car_show', {'id': car.id}) }}"
+                                                               class="btn bg-deep-purple waves-effect">show</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ path('user_car_edit', {'id': car.id}) }}"
+                                                               class="btn bg-deep-purple waves-effect">edit</a>
+                                                        </td>
+                                                        <td>
+                                                            {{ include('home/car/_delete_form.html.twig') }}
+                                                        </td>
+                                                    </tr>
+                                                {% else %}
+                                                    <tr>
+                                                        <td colspan="24">no records found</td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <a href="{{ path('user_car_new') }}" class="btn bg-deep-purple waves-effect">Create
+                                            new</a>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <!--== End Content ==-->
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -2,6 +2,7 @@
 
 {% block title %}{{ app.user.name }} Profile{% endblock %}
 
+
 {% block body %}
 
 <!--== Page Title Area Start ==-->
@@ -22,30 +23,22 @@
 </section>
 <!--== Page Title Area End ==-->
 
+<section id="maincontent" class="padding30">
+    <div class="container">
+        <div class="row">
 
+            {{ include('home/user/usermenu.html.twig') }}
 
-    <section id="maincontent" class="padding30">
-        <div class="container">
-            <div class="row">
+            <div class="span8">
+                <!--== Content ==-->
+    <h1>Create new Car</h1>
 
-                {{ include('user/usermenu.html.twig') }}
+    {{ include('home/car/_form.html.twig') }}
 
-                <div class="span8">
-                    <!-- start article 1 -->
-                    <article class="blog-post">
-                        <div class="post-heading">
-                            <h3>Edit User Profile Information</h3>
-                        </div>
-                        <div class="row">
-
-                            {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
-
-                        </div>
-                    </article>
-                </div>
+    <a href="{{ path('user_car_index') }}">back to list</a>
+                <!--== End Content ==-->
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
 {% endblock %}
-
