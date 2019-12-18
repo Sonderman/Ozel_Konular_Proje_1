@@ -37,13 +37,6 @@ class Car1Type extends AbstractType
                 ]
             ])
 
-            ->add('status',ChoiceType::class,[
-                'choices'=>[
-                    'Active'=>'active',
-                    'Passive'=>'passive'
-                ],
-            ])
-
             ->add('rate')
             ->add('seats')
             ->add('doors')
@@ -56,10 +49,10 @@ class Car1Type extends AbstractType
             ->add('model')
             ->add('year')
             ->add('price_for_a_day')
-            ->add('owner_id')
+            // ->add('owner_id')
             ->add('category')
-            ->add('owner')
-            ->add('contract')
+            //  ->add('owner')
+            //  ->add('contract')
 
             ->add('detail',CKEditorType::class,array(
                 'config'=>array(

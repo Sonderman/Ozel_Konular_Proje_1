@@ -4,6 +4,7 @@ namespace App\Controller\Home;
 
 use App\Entity\Car;
 use App\Form\Car1Type;
+use App\Form\CarType;
 use App\Repository\CarRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -21,8 +22,9 @@ class CarController extends AbstractController
      */
     public function index(CarRepository $carRepository): Response
     {
+        $user = $this->getUser();
         return $this->render('home/car/index.html.twig', [
-            'cars' => $carRepository->findAll(),
+            'cars' => $carRepository->findby(['owner_id'=>$user->getId()]),
         ]);
     }
 
@@ -32,11 +34,14 @@ class CarController extends AbstractController
     public function new(Request $request): Response
     {
         $car = new Car();
-        $form = $this->createForm(Car1Type::class, $car);
+        $form = $this->createForm(CarType::class, $car);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+
+
             // resim almak için burasıda eklendi ve services.yaml de de dosya yolu belirtilmeli
             /** @var file $file */
             $file =$form['image']->getData();
@@ -53,6 +58,10 @@ class CarController extends AbstractController
                 $car->setImage($fileName);
             }
             // resim upload kodları burada bitiyor
+
+            $user = $this->getUser();
+            $car->setOwnerId($user->getId());
+            $car->setStatus("New");
             $entityManager->persist($car);
             $entityManager->flush();
 
