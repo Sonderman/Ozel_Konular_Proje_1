@@ -1,6 +1,4 @@
 
-
-
 <!-- Favicon-->
 <link rel="icon" href="{{ asset('assets') }}/admin/favicon.ico" type="image/x-icon">
 
@@ -22,8 +20,8 @@
 
 <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
 <link href="{{ asset('assets') }}/admin/css/themes/all-themes.css" rel="stylesheet" />
-
-
+<div style="margin:30px">
+<div class="card" style="padding: 30px">
 <form role="form" name="image" action="{{ path('image_new',{'id':id}) }}" method="post" enctype="multipart/form-data">
 <div class="card-body">
 <div class="row">
@@ -53,10 +51,10 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
-
+</div>
 <h1>Image index</h1>
-
-<table class="table">
+<div class="card">
+<table class="table table-hover">
     <thead>
     <tr>
         <th>Id</th>
@@ -87,5 +85,5 @@
     {% endfor %}
     </tbody>
 </table>
-
-
+</div>
+</div>

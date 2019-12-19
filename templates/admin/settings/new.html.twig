@@ -1,11 +1,18 @@
-<!DOCTYPE html>
+{% extends 'Adminbase.html.twig' %}
 
-<title>New Settings</title>
+{% block title %}New Settings{% endblock %}
 
 {% block body %}
-    <h1>Create new Settings</h1>
+    <section class="content">
+        <div class="container-fluid">
+            <h1>Create new Settings</h1><br>
+            <div class="card" style="padding: 30px">
 
-    {{ include('admin/settings/_form.html.twig') }}
 
-    <a href="{{ path('settings_index') }}">back to list</a>
+                {{ include('admin/settings/_form.html.twig') }}
+
+                <a href="{{ path('settings_index') }}" class="btn bg-green waves-effect">back to list</a>
+            </div>
+        </div>
+    </section>
 {% endblock %}
