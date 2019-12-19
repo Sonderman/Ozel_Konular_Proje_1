@@ -30,8 +30,18 @@ class HomeController extends AbstractController
      */
     public function show(Car $car): Response
     {
-        return $this->render('home/CarShow.html.twig', [
+        return $this->render('home/SinglePages/CarShow.html.twig', [
             'car' => $car,
+        ]);
+    }
+    /**
+     * @Route("/aboutus", name="aboutus")
+     */
+    public function aboutus(SettingsRepository $settingsRepository): Response
+    {
+        $settings = $settingsRepository->findBy(['id'=>1]);
+        return $this->render('home/SinglePages/aboutus.html.twig', [
+            'settings' => $settings,
         ]);
     }
 
