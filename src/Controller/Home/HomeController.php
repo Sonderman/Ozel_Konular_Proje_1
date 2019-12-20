@@ -24,11 +24,15 @@ class HomeController extends AbstractController
     {
         $data = $settingsRepository->findBy(['id' => 1]);
         $slider = $carRepository->findBy([], ['title' => 'ASC'], 5);
+        $cars = $carRepository->findBy([], ['title' => 'DESC'], 6);
+        $newcars = $carRepository->findBy([], ['title' => 'DESC'], 4);
         //dump($slider);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'data' => $data,
-            'slider' => $slider
+            'slider' => $slider,
+            'cars'=>$cars,
+            'newcars'=>$newcars
         ]);
     }
 
