@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Admin;
 
-use App\Entity\Message;
+use App\Entity\Admin\Messages;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Message|null find($id, $lockMode = null, $lockVersion = null)
- * @method Message|null findOneBy(array $criteria, array $orderBy = null)
- * @method Message[]    findAll()
- * @method Message[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Messages|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Messages|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Messages[]    findAll()
+ * @method Messages[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MessageRepository extends ServiceEntityRepository
+class MessagesRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Message::class);
+        parent::__construct($registry, Messages::class);
     }
 
     // /**
-    //  * @return Message[] Returns an array of Message objects
+    //  * @return Messages[] Returns an array of Messages objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class MessageRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Message
+    public function findOneBySomeField($value): ?Messages
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

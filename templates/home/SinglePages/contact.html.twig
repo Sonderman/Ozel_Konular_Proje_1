@@ -38,8 +38,10 @@
                         <div class="widget">
                             <h4 class="rheading">Find us on social networks<span></span></h4>
                             <ul class="social-links">
-                                <li><a href="{{ settings[0].twitter }}" title="Twitter"><i class="icon-square icon-32 icon-twitter"></i></a></li>
-                                <li><a href="{{ settings[0].facebook }}" title="Facebook"><i class="icon-square icon-32 icon-facebook"></i></a></li>
+                                <li><a href="{{ settings[0].twitter }}" title="Twitter"><i
+                                                class="icon-square icon-32 icon-twitter"></i></a></li>
+                                <li><a href="{{ settings[0].facebook }}" title="Facebook"><i
+                                                class="icon-square icon-32 icon-facebook"></i></a></li>
 
                             </ul>
                         </div>
@@ -47,47 +49,54 @@
 
                 </div>
                 <div class="span10">
-                <div class="col-lg-10 m-auto">
-                    <div class="contact-form">
-                        <form action="/">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="name-input">
-                                        <input type="text" placeholder="Full Name">
+                    <div class="col-lg-10 m-auto">
+                        <div class="contact-form">
+
+
+                            {{ include('messages.html.twig') }}
+
+                            <form name="messages" method="post">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="name-input">
+                                            <input type="text" placeholder="Full Name" id="messages_name"
+                                                   name="messages[name]"
+                                                   maxlength="30">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="email-input">
+                                            <input type="email" placeholder="Email Address" id="messages_email"
+                                                   name="messages[email]"
+                                                   maxlength="100">
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="email-input">
-                                        <input type="email" placeholder="Email Address">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="website-input">
-                                        <input type="url" placeholder="Website">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="subject-input">
+                                            <input type="text" placeholder="Subject" id="messages_subject"
+                                                   name="messages[subject]"
+                                                   maxlength="100">
+                                        </div>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="subject-input">
-                                        <input type="text" placeholder="Subject">
-                                    </div>
+                                <div class="message-input">
+                                    <textarea cols="30" rows="10" placeholder="Message" id="messages_message"
+                                              name="messages[message]"
+                                              maxlength="255"></textarea>
                                 </div>
-                            </div>
 
-                            <div class="message-input">
-                                <textarea name="review" cols="30" rows="10" placeholder="Message"></textarea>
-                            </div>
-
-                            <div class="input-submit">
-                                <button type="submit">Submit Message</button>
-                            </div>
-                        </form>
+                                <div class="input-submit">
+                                    <input type="hidden" name="token" value="{{ csrf_token(('form-message')) }}"/>
+                                    <button type="submit">Submit Message</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
