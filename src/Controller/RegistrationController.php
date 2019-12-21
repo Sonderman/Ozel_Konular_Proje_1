@@ -23,8 +23,68 @@ class RegistrationController extends AbstractController
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, MyAuthenticator $authenticator): Response
     {
         $user = new User();
+        $previousRoute = $request->headers->get('referer');
+        $submittedToken = $request->request->get('token');
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() ) {
+
+            if ($this->isCsrfTokenValid('form-message', $submittedToken)) {
+                /** @var file $file */
+                $file = $form['image']->getData();
+                if ($file) {
+                    $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
+                    try {
+                        $file->move(
+                            $this->getParameter('image_directory'),
+                            $fileName
+                        );
+                    } catch (FileException $e) {
+
+                    }
+                    $user->setImage($fileName);
+                }
+                // encode the plain password
+                $user->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
+                $this->addFlash('success', 'You are succesfully registered');
+
+                // do anything else you need here, like send an email
+
+                return $guardHandler->authenticateUserAndHandleSuccess(
+                    $user,
+                    $request,
+                    $authenticator,
+                    'main' // firewall name in security.yaml
+                ) ?: new RedirectResponse('/');
+            }
+        }
+
+            return $this->render('registration/userregister.html.twig', [
+                'registrationForm' => $form->createView(),
+            ]);
+
+    }
+    /**
+     * @Route("/registeradmin", name="admin_register")
+     */
+    public function registerAdmin(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, MyAuthenticator $authenticator): Response
+    {
+        $user = new User();
+        $previousRoute = $request->headers->get('referer');
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var file $file */
@@ -63,10 +123,12 @@ class RegistrationController extends AbstractController
             ) ? : new RedirectResponse('/');
         }
 
-        return $this->render('registration/adminregister.html.twig', [
-            'registrationForm' => $form->createView(),
-        ]);
+            return $this->render('registration/adminregister.html.twig', [
+                'registrationForm' => $form->createView(),
+            ]);
+
     }
+
     /**
      * @return string
      */
