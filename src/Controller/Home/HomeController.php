@@ -7,6 +7,7 @@ use App\Entity\Car;
 use App\Form\Admin\MessagesType;
 use App\Repository\CarRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\ImageRepository;
 use App\Repository\SettingsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,10 +44,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/cars/{id}", name="car_show", methods={"GET"})
      */
-    public function show(Car $car): Response
+    public function show(Car $car,$id,ImageRepository $imageRepository): Response
     {
+        $images = $imageRepository->findBy(['car' => $id]);
         return $this->render('home/SinglePages/CarShow.html.twig', [
             'car' => $car,
+            'images'=> $images
         ]);
     }
 
