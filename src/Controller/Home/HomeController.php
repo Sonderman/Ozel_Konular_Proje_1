@@ -6,6 +6,7 @@ use App\Entity\Admin\Messages;
 use App\Entity\Car;
 use App\Form\Admin\MessagesType;
 use App\Repository\CarRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\SettingsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,19 +21,22 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(SettingsRepository $settingsRepository, CarRepository $carRepository)
+    public function index(SettingsRepository $settingsRepository, CarRepository $carRepository,CategoryRepository $categoryRepository)
     {
         $data = $settingsRepository->findBy(['id' => 1]);
-        $slider = $carRepository->findBy([], ['title' => 'ASC'], 5);
-        $cars = $carRepository->findBy([], ['title' => 'DESC'], 6);
-        $newcars = $carRepository->findBy([], ['title' => 'DESC'], 4);
-        //dump($slider);
+        $slider = $carRepository->findBy([], ['title' => 'ASC'], 6);
+        $cars = $carRepository->findBy([], [], 10);
+        $newcars = $carRepository->findBy([], ['title' => 'DESC'], 5);
+        $category = $categoryRepository->findAll();
+       // dump($category);
+       // die();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'data' => $data,
             'slider' => $slider,
             'cars'=>$cars,
-            'newcars'=>$newcars
+            'newcars'=>$newcars,
+            'category'=>$category
         ]);
     }
 
