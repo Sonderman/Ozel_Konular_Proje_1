@@ -21,8 +21,11 @@ class CarController extends AbstractController
      */
     public function index(CarRepository $carRepository): Response
     {
+        $cars = $carRepository->getAllCars();
+       // dump($cars);
+       // die();
         return $this->render('admin/car/index.html.twig', [
-            'cars' => $carRepository->findAll(),
+            'cars' => $cars,
         ]);
     }
 

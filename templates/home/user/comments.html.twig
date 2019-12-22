@@ -33,40 +33,47 @@
                     <!-- start article 1 -->
                     <article class="blog-post">
                         <div class="post-heading">
-                            <h3>User Comments</h3>
+                            <h3>Your Comments</h3>
                         </div>
                         <div class="row">
                             <div class="span8">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Comment</th>
+                                        <th>Status</th>
 
+                                        <th>Car</th>
+                                        <th>Created_at</th>
 
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="span8">
-                                            <div class="post-image">
-                                                <a href="#"><img src="assets/img/dummies/blog1.jpg" alt=""/></a>
-                                            </div>
-                                            <ul class="post-meta">
-                                                <li class="first"><i class="icon-calendar"></i><span>Mar 13, 2013</span>
-                                                </li>
-                                                <li><i class="icon-comments"></i><span><a href="#">4 comments</a></span>
-                                                </li>
-                                                <li class="last"><i class="icon-tags"></i><span><a href="#">Design</a>, <a
-                                                                href="#">Blog</a>, <a href="#">Tutorial</a></span></li>
-                                            </ul>
-                                            <div class="clearfix">
-                                            </div>
-                                            <p>
-                                                Ei eos suavitate forensibus mnesarchum. Eu est timeam vocibus, an nostro
-                                                aliquam adipiscing quo. Zril equidem et quo, ad albucius scripserit sit.
-                                                Vis constituto deseruisse an, interesset reprehendunt et mel, gloriatur
-                                                concludaturque pro no. At ludus mediocritatem
-                                                qui, no vituperata assueverit.
-                                            </p>
-                                            <a href="#" class="btn btn-small btn-theme">Read more</a>
-                                        </div>
-
-
+                                        <th>Rate</th>
+                                        <th>actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for comment in comments %}
+                                        <tr>
+                                            <td>{{ comment.subject }}</td>
+                                            <td>{{ comment.comment }}</td>
+                                            <td>{{ comment.status }}</td>
+                                            <td nowrap >
+                                                <a href="{{ path('car_show', {'id': comment.carid}) }}">{{ comment.title }}</a>
+                                            </td>
+                                            <td>{{ comment.created_at }}</td>
+                                            <td>{{ comment.rate }}</td>
+                                            <td>
+                                                <a href="{{ path('admin_comment_delete', {'id': comment.id}) }}"
+                                                   class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="10">no records found</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </article>

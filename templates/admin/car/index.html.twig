@@ -25,8 +25,8 @@
                 <th>Status</th>
                 <th>Created_at</th>
                 <th>Updated_at</th>
-                <th>Category_id</th>
-                <th>Contract_id</th>
+                <th>Category</th>
+                <th>Contract</th>
                 <th>Rate</th>
                 <th>Seats</th>
                 <th>Doors</th>
@@ -39,7 +39,7 @@
                 <th>Model</th>
                 <th>Year</th>
                 <th>Price_for_a_day</th>
-                <th>Owner_id</th>
+                <th>Owner</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -56,23 +56,27 @@
                 <td>{{ car.description }}</td>
                 <td><img src="{{ asset('uploads/images/' ~ car.image) }}" height="40"></td>
                 <td>{{ car.status }}</td>
-                <td>{{ car.createdAt ? car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ car.updatedAt ? car.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ car.categoryId }}</td>
-                <td>{{ car.contractId }}</td>
+                <td>{{ car.created_at ? car.created_at|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ car.updated_at ? car.updated_at|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ car.catname }}</td>
+                <td>{{ car.contract_id }}</td>
                 <td>{{ car.rate }}</td>
                 <td>{{ car.seats }}</td>
                 <td>{{ car.doors }}</td>
-                <td>{{ car.hasAirconditions ? 'Yes' : 'No' }}</td>
+                <td>{{ car.has_airconditions ? 'Yes' : 'No' }}</td>
                 <td>{{ car.gearbox }}</td>
                 <td>{{ car.transmission }}</td>
-                <td>{{ car.fuelType }}</td>
-                <td>{{ car.baggageCapacity }}</td>
+                <td>{{ car.fuel_type }}</td>
+                <td>{{ car.baggage_capacity }}</td>
                 <td>{{ car.brand }}</td>
                 <td>{{ car.model }}</td>
                 <td>{{ car.year }}</td>
-                <td>{{ car.priceForADay }}</td>
-                <td>{{ car.ownerId }}</td>
+                <td>{{ car.price_for_a_day }}</td>
+                <td>
+                    <a href="{{ path('admin_user_show', {'id': car.owner_id}) }}">
+                    {{ car.name }} {{ car.surname }}
+                    </a>
+                </td>
                 <td >
                     <a href="{{ path('admin_car_show', {'id': car.id}) }}" class="btn bg-deep-purple waves-effect">show</a>
                 </td>

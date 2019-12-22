@@ -19,6 +19,29 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
+    public function  getAllComments(): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT com.*,usr.name,usr.surname,cr.title FROM comment com
+                JOIN user usr ON usr.id = com.userid 
+                JOIN car cr ON cr.id = com.carid 
+                ORDER BY cr.id DESC';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    public function  getUserComments($userId): array
+    {
+        $qb= $this->createQueryBuilder('com')
+            ->select('com.id,com.subject,com.rate,com.comment,com.created_at,com.carid,com.status,cr.title')
+            ->leftJoin('App\Entity\Car','cr','WITH','cr.id = com.carid')
+            ->where('com.userid = :userid')
+            ->setParameter('userid',$userId)
+            ->orderBy('com.id','DESC');
+        $query =$qb->getQuery();
+        return $query->execute();
+    }
+
     // /**
     //  * @return Comment[] Returns an array of Comment objects
     //  */

@@ -6,6 +6,7 @@ use App\Entity\Admin\Comment;
 use App\Entity\User;
 use App\Form\Admin\CommentType;
 use App\Form\UserType;
+use App\Repository\Admin\CommentRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -31,9 +32,13 @@ class UserController extends AbstractController
     /**
      * @Route("/comments", name="user_comments", methods={"GET"})
      */
-    public function comments(): Response
+    public function comments(CommentRepository $commentRepository): Response
     {
-        return $this->render('home/user/comments.html.twig');
+        $user = $this->getUser();
+        $comments=$commentRepository->getUserComments($user->getId());
+        return $this->render('home/user/comments.html.twig',[
+            'comments' => $comments,
+        ]);
 
     }
 
