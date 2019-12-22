@@ -38,8 +38,14 @@ class MyAuthenticator extends AbstractFormLoginAuthenticator
 
     public function supports(Request $request)
     {
-        return 'app_login' === $request->attributes->get('_route')
-            && $request->isMethod('POST');
+        if(('login_user' === $request->attributes->get('_route')
+            && $request->isMethod('POST')) || ('login_user' === $request->attributes->get('_route')
+                && $request->isMethod('POST')) ){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     public function getCredentials(Request $request)
@@ -85,12 +91,10 @@ class MyAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-       // return new RedirectResponse($this->urlGenerator->generate('user_login'));
-
     }
 
     protected function getLoginUrl()
     {
-        return $this->urlGenerator->generate('app_login');
+        return $this->urlGenerator->generate('login_user');
     }
 }

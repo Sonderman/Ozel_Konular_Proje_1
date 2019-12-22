@@ -49,7 +49,7 @@ class Customer
     private $contracts;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="customer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Admin\Comment", mappedBy="customer")
      */
     private $comments;
 

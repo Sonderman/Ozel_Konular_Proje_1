@@ -1,0 +1,30 @@
+{% extends 'Adminbase.html.twig' %}
+
+{% block title %}Edit Cars{% endblock %}
+
+{% block body %}
+    <section class="content">
+        <div class="container-fluid">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <h1>Edit Comments</h1>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+
+
+                                    {{ include('admin/comment/_form.html.twig', {'button_label': 'Update'}) }} <br>
+
+                                    <a href="{{ path('admin_comment_index') }}" class="btn bg-green waves-effect">back to list</a> <br><br>
+
+                                    {{ include('admin/comment/_delete_form.html.twig') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

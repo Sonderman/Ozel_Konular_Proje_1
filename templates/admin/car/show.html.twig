@@ -4,119 +4,120 @@
 
 {% block body %}
 
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="card" style="padding: 30px">
-                        <h1>Car</h1>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="padding: 30px">
+                    <h1>Car</h1>
 
-                        <div class="body table-responsive">
-                            <table class="table table-hover">
-                                <tbody>
-                                <tr>
-                                    <th>Id</th>
-                                    <td>{{ car.id }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Title</th>
-                                    <td>{{ car.title }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Keywords</th>
-                                    <td>{{ car.keywords }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Description</th>
-                                    <td>{{ car.description }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Image</th>
-                                    <td><img src="{{ asset('uploads/images/' ~ car.image) }}" height="40" alt=""></td>
-                                </tr>
-                                <tr>
-                                    <th>Status</th>
-                                    <td>{{ car.status }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Created_at</th>
-                                    <td>{{ car.createdAt ? car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Updated_at</th>
-                                    <td>{{ car.updatedAt ? car.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Category_id</th>
-                                    <td>{{ car.categoryId }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Contract_id</th>
-                                    <td>{{ car.contractId }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Rate</th>
-                                    <td>{{ car.rate }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Seats</th>
-                                    <td>{{ car.seats }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Doors</th>
-                                    <td>{{ car.doors }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Has_airconditions</th>
-                                    <td>{{ car.hasAirconditions ? 'Yes' : 'No' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Gearbox</th>
-                                    <td>{{ car.gearbox }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Transmission</th>
-                                    <td>{{ car.transmission }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Fuel_type</th>
-                                    <td>{{ car.fuelType }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Baggage_capacity</th>
-                                    <td>{{ car.baggageCapacity }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Brand</th>
-                                    <td>{{ car.brand }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Model</th>
-                                    <td>{{ car.model }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Year</th>
-                                    <td>{{ car.year }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Price_for_a_day</th>
-                                    <td>{{ car.priceForADay }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Owner_id</th>
-                                    <td>{{ car.ownerId }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="body table-responsive">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ car.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Title</th>
+                                <td>{{ car.title }}</td>
+                            </tr>
+                            <tr>
+                                <th>Keywords</th>
+                                <td>{{ car.keywords }}</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>{{ car.description }}</td>
+                            </tr>
+                            <tr>
+                                <th>Image</th>
+                                <td><img src="{{ asset('uploads/images/' ~ car.image) }}" height="40" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>{{ car.status }}</td>
+                            </tr>
+                            <tr>
+                                <th>Created_at</th>
+                                <td>{{ car.createdAt ? car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Updated_at</th>
+                                <td>{{ car.updatedAt ? car.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Category_id</th>
+                                <td>{{ car.categoryId }}</td>
+                            </tr>
+                            <tr>
+                                <th>Contract_id</th>
+                                <td>{{ car.contractId }}</td>
+                            </tr>
+                            <tr>
+                                <th>Rate</th>
+                                <td>{{ car.rate }}</td>
+                            </tr>
+                            <tr>
+                                <th>Seats</th>
+                                <td>{{ car.seats }}</td>
+                            </tr>
+                            <tr>
+                                <th>Doors</th>
+                                <td>{{ car.doors }}</td>
+                            </tr>
+                            <tr>
+                                <th>Has_airconditions</th>
+                                <td>{{ car.hasAirconditions ? 'Yes' : 'No' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Gearbox</th>
+                                <td>{{ car.gearbox }}</td>
+                            </tr>
+                            <tr>
+                                <th>Transmission</th>
+                                <td>{{ car.transmission }}</td>
+                            </tr>
+                            <tr>
+                                <th>Fuel_type</th>
+                                <td>{{ car.fuelType }}</td>
+                            </tr>
+                            <tr>
+                                <th>Baggage_capacity</th>
+                                <td>{{ car.baggageCapacity }}</td>
+                            </tr>
+                            <tr>
+                                <th>Brand</th>
+                                <td>{{ car.brand }}</td>
+                            </tr>
+                            <tr>
+                                <th>Model</th>
+                                <td>{{ car.model }}</td>
+                            </tr>
+                            <tr>
+                                <th>Year</th>
+                                <td>{{ car.year }}</td>
+                            </tr>
+                            <tr>
+                                <th>Price_for_a_day</th>
+                                <td>{{ car.priceForADay }}</td>
+                            </tr>
+                            <tr>
+                                <th>Owner_id</th>
+                                <td>{{ car.ownerId }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-                        <a href="{{ path('admin_car_index') }}" class="btn bg-green waves-effect">back to list</a>
-                        <br><br>
-                        <a href="{{ path('admin_car_edit', {'id': car.id}) }}" class="btn bg-deep-purple waves-effect">edit</a><br><br>
+                    <a href="{{ path('admin_car_index') }}" class="btn bg-green waves-effect">back to list</a>
+                    <br><br>
+                    <a href="{{ path('admin_car_edit', {'id': car.id}) }}"
+                       class="btn bg-deep-purple waves-effect">edit</a><br><br>
 
-                        {{ include('admin/car/_delete_form.html.twig') }}
+                    {{ include('admin/car/_delete_form.html.twig') }}
 
                 </div>
-            </section>
+            </div>
         </div>
-    </div>
+    </section>
 {% endblock %}

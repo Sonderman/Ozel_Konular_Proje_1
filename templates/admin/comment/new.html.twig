@@ -1,0 +1,23 @@
+{% extends 'Adminbase.html.twig' %}
+
+{% block title %}New Comment{% endblock %}
+
+{% block body %}
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="padding: 30px">
+
+                    <h1>Create new Comment</h1>
+
+                    {{ include('admin/comment/_form.html.twig') }}
+                    <br>
+                    <a href="{{ path('admin_comment_index') }}" class="btn bg-deep-purple waves-effect">back to list</a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

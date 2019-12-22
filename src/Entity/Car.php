@@ -141,7 +141,7 @@ class Car
     private $contract;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="car")
+     * @ORM\OneToMany(targetEntity="App\Entity\Admin\Comment", mappedBy="car")
      */
     private $comments;
 

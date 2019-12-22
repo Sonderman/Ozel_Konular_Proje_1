@@ -5,10 +5,12 @@ namespace App\Controller\Home;
 use App\Entity\Admin\Messages;
 use App\Entity\Car;
 use App\Form\Admin\MessagesType;
+use App\Repository\Admin\CommentRepository;
 use App\Repository\CarRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\ImageRepository;
 use App\Repository\SettingsRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,12 +46,18 @@ class HomeController extends AbstractController
     /**
      * @Route("/cars/{id}", name="car_show", methods={"GET"})
      */
-    public function show(Car $car,$id,ImageRepository $imageRepository): Response
+    public function show(Car $car,$id,ImageRepository $imageRepository,CommentRepository $commentRepository,UserRepository $userRepository): Response
     {
+        $users = $userRepository->findAll();
         $images = $imageRepository->findBy(['car' => $id]);
+        $comments = $commentRepository->findBy(['carid' => $id,'status'=>'True']);
+        //dump($comments);
+        //die();
         return $this->render('home/SinglePages/CarShow.html.twig', [
+            'users' => $users,
             'car' => $car,
-            'images'=> $images
+            'images'=> $images,
+            'comments'=>$comments
         ]);
     }
 

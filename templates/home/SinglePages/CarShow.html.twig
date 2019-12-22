@@ -59,6 +59,8 @@
                                     </p>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -149,6 +151,97 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="container">
+
+                <div class="card" style="max-height: 1200px; min-height: 500px; overflow-y: auto">
+                    <div class="card-header">
+                        <h3>Comments</h3>
+                    </div>
+                    <div class="card-body" style="height: 233px; ">
+                        <ul class="list-group">
+                            {% for com in comments %}
+                                <li class="list-group-item" style="margin-bottom: 6px;">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <div class="media" style="overflow: visible">
+                                                <div>
+                                                    <img {% for usr in users %} {% if(usr.id == com.userid) %} src="{{ asset('uploads/images/' ~ usr.image) }}" {% endif %}{% endfor %}
+                                                            class="mr-3"
+                                                            style="height: 50px;width: 50px;">
+                                                </div>
+                                                <div class="media-body" style="overflow: visible">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <p>
+                                                            <h2>{% for usr in users %} {% if(usr.id == com.userid) %} {{ usr.name }} commented {% endif %}{% endfor %}</h2> <hr>
+                                                            <h5>Subject:</h5>
+                                                            <h3><b>{{ com.subject }}</b></h3>
+                                                            <hr>
+                                                            <h5>Comment:</h5>
+                                                            <p>{{ com.comment }}</p>
+                                                            <hr>
+                                                            <h4>Rate: {{ com.rate }}</h4>
+                                                            <small class="text-muted">{{ com.createdAt }}</small>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                    </div>
+                </div>
+            {% if app.user %}
+                {{ include('messages.html.twig') }}
+                <div class="card" style="margin-top: 50px;">
+                    <div class="card-header">
+                        <h3>Leave a Comment</h3>
+                    </div>
+                    <div style="padding: 30px;">
+                        <div class="comment-form">
+                            <form method="post" action="{{ path('user_new_comment', {'id': car.id}) }}">
+                                <div class="form-group">
+                                    <label>Subject</label>
+                                    <input type="text" class="form-control" name="comment[subject]"
+                                           maxlength="100"
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <label>Rate</label>
+                                    <select class="form-control" name="comment[rate]">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Leave Comment</label>
+                                    <textarea class="form-control" name="comment[comment]"
+                                              maxlength="255"
+                                              rows="4"></textarea>
+                                </div>
+                                <input type="hidden" id="comment__token" name="token"
+                                       value="{{ csrf_token(('comment')) }}"/>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                    <div class="center">
+                        <h2><a href="/login">Please Login to Send Comment</a></h2>
+                    </div>
+
+            {% endif %}
         </div>
     </section>
 {% endblock %}
