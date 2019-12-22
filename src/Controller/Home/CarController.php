@@ -62,6 +62,8 @@ class CarController extends AbstractController
             $user = $this->getUser();
             $car->setOwnerId($user->getId());
             $car->setStatus("New");
+            //dump($car);
+            //die();
             $entityManager->persist($car);
             $entityManager->flush();
 

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Admin\Comment;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -129,11 +130,6 @@ class Car
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="cars")
      */
     private $category;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="car")
-     */
-    private $owner;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Contract", inversedBy="car", cascade={"persist", "remove"})
@@ -399,7 +395,7 @@ class Car
         return $this->year;
     }
 
-    public function setYear(int $year): self
+    public function setYear(?int $year): self
     {
         $this->year = $year;
 
@@ -438,18 +434,6 @@ class Car
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    public function getOwner(): ?User
-    {
-        return $this->owner;
-    }
-
-    public function setOwner(?User $owner): self
-    {
-        $this->owner = $owner;
 
         return $this;
     }
