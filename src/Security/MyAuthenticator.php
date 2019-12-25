@@ -39,7 +39,7 @@ class MyAuthenticator extends AbstractFormLoginAuthenticator
     public function supports(Request $request)
     {
         if(('login_user' === $request->attributes->get('_route')
-            && $request->isMethod('POST')) || ('login_user' === $request->attributes->get('_route')
+            && $request->isMethod('POST')) || ('login_admin' === $request->attributes->get('_route')
                 && $request->isMethod('POST')) ){
             return true;
         }else{

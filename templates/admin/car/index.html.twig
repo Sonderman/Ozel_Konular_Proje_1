@@ -4,101 +4,103 @@
 
 {% block body %}
 
-<section class="content">
-    <div class="container-fluid">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="card" style="padding: 30px">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="padding: 30px">
 
-    <h1>Car index</h1>
+                    <h1>Car index</h1>
 
-            <div class="body table-responsive">
-                <table class="table table-hover">
+                    <div class="body table-responsive">
+                        <table class="table table-hover">
 
-        <thead>
-            <tr>
-                <th>Image_Gallery</th>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Keywords</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Status</th>
-                <th>Created_at</th>
-                <th>Updated_at</th>
-                <th>Category</th>
-                <th>Contract</th>
-                <th>Rate</th>
-                <th>Seats</th>
-                <th>Doors</th>
-                <th>Has_airconditions</th>
-                <th>Gearbox</th>
-                <th>Transmission</th>
-                <th>Fuel_type</th>
-                <th>Baggage_capacity</th>
-                <th>Brand</th>
-                <th>Model</th>
-                <th>Year</th>
-                <th>Price_for_a_day</th>
-                <th>Owner</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for car in cars %}
-            <tr>
-                <td>
-                    <a href="javascript:window.open('{{ path('image_new',{'id': car.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
-                        <img src="{{ asset('assets/admin/icons/gallery.png') }}" height="40"></a>
-                </td>
-                <td>{{ car.id }}</td>
-                <td>{{ car.title }}</td>
-                <td>{{ car.keywords }}</td>
-                <td>{{ car.description }}</td>
-                <td><img src="{{ asset('uploads/images/' ~ car.image) }}" height="40"></td>
-                <td>{{ car.status }}</td>
-                <td>{{ car.created_at ? car.created_at|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ car.updated_at ? car.updated_at|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ car.catname }}</td>
-                <td>{{ car.contract_id }}</td>
-                <td>{{ car.rate }}</td>
-                <td>{{ car.seats }}</td>
-                <td>{{ car.doors }}</td>
-                <td>{{ car.has_airconditions ? 'Yes' : 'No' }}</td>
-                <td>{{ car.gearbox }}</td>
-                <td>{{ car.transmission }}</td>
-                <td>{{ car.fuel_type }}</td>
-                <td>{{ car.baggage_capacity }}</td>
-                <td>{{ car.brand }}</td>
-                <td>{{ car.model }}</td>
-                <td>{{ car.year }}</td>
-                <td>{{ car.price_for_a_day }}</td>
-                <td>
-                    <a href="{{ path('admin_user_show', {'id': car.owner_id}) }}">
-                    {{ car.name }} {{ car.surname }}
-                    </a>
-                </td>
-                <td >
-                    <a href="{{ path('admin_car_show', {'id': car.id}) }}" class="btn bg-deep-purple waves-effect">show</a>
-                </td>
-                <td>
-                    <a href="{{ path('admin_car_edit', {'id': car.id}) }}" class="btn bg-deep-purple waves-effect">edit</a>
-                </td>
-                <td>
-                   {{ include('admin/car/_delete_form.html.twig') }}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="24">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                            <thead>
+                            <tr>
+                                <th>Image_Gallery</th>
+                                <th>Id</th>
+                                <th>Title</th>
+                                <th>Keywords</th>
+                                <th>Description</th>
+                                <th>Image</th>
+                                <th>Status</th>
+                                <th>Created_at</th>
+                                <th>Updated_at</th>
+                                <th>Category</th>
+                                <th>Contract</th>
+                                <th>Rate</th>
+                                <th>Seats</th>
+                                <th>Doors</th>
+                                <th>Has_airconditions</th>
+                                <th>Gearbox</th>
+                                <th>Transmission</th>
+                                <th>Fuel_type</th>
+                                <th>Baggage_capacity</th>
+                                <th>Brand</th>
+                                <th>Model</th>
+                                <th>Year</th>
+                                <th>Price_for_a_day</th>
+                                <th>Owner</th>
+                                <th>actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for car in cars %}
+                                <tr>
+                                    <td>
+                                        <a href="javascript:window.open('{{ path('image_new',{'id': car.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
+                                            <img src="{{ asset('assets/admin/icons/gallery.png') }}" height="40"></a>
+                                    </td>
+                                    <td>{{ car.id }}</td>
+                                    <td>{{ car.title }}</td>
+                                    <td>{{ car.keywords }}</td>
+                                    <td>{{ car.description }}</td>
+                                    <td><img src="{{ asset('uploads/images/' ~ car.image) }}" height="40"></td>
+                                    <td>{{ car.status }}</td>
+                                    <td>{{ car.created_at ? car.created_at|date('Y-m-d H:i:s') : '' }}</td>
+                                    <td>{{ car.updated_at ? car.updated_at|date('Y-m-d H:i:s') : '' }}</td>
+                                    <td>{{ car.catname }}</td>
+                                    <td>{{ car.contract_id }}</td>
+                                    <td>{{ car.rate }}</td>
+                                    <td>{{ car.seats }}</td>
+                                    <td>{{ car.doors }}</td>
+                                    <td>{{ car.has_airconditions ? 'Yes' : 'No' }}</td>
+                                    <td>{{ car.gearbox }}</td>
+                                    <td>{{ car.transmission }}</td>
+                                    <td>{{ car.fuel_type }}</td>
+                                    <td>{{ car.baggage_capacity }}</td>
+                                    <td>{{ car.brand }}</td>
+                                    <td>{{ car.model }}</td>
+                                    <td>{{ car.year }}</td>
+                                    <td>{{ car.price_for_a_day }}</td>
+                                    <td>
+                                        <a href="{{ path('admin_user_show', {'id': car.owner_id}) }}">
+                                            {{ car.name }} {{ car.surname }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('admin_car_show', {'id': car.id}) }}"
+                                           class="btn bg-deep-purple waves-effect">show</a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('admin_car_edit', {'id': car.id}) }}"
+                                           class="btn bg-deep-purple waves-effect">edit</a>
+                                    </td>
+                                    <td>
+                                        {{ include('admin/car/_delete_form.html.twig') }}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="24">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <a href="{{ path('admin_car_new') }}" class="btn bg-deep-purple waves-effect">Create new</a>
+                </div>
             </div>
-    <a href="{{ path('admin_car_new') }}" class="btn bg-deep-purple waves-effect">Create new</a>
         </div>
-    </div>
-    </div>
-</section>
+    </section>
 
 {% endblock %}

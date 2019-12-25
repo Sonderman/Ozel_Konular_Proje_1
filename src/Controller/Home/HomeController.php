@@ -14,11 +14,10 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\Bridge\Google\Smtp\GmailTransport;
+use Symfony\Component\Mailer\Bridge\Google\Transport\GmailSmtpTransport;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
-
 class HomeController extends AbstractController
 {
     /**
@@ -93,7 +92,7 @@ class HomeController extends AbstractController
                 $this->addFlash('success', 'Your message has been sent succesfully');
 
 
-                ///////////////////////Send Mail
+                ///////////////////////Send Mail/////////////////////////
                 $email = (new Email())
                     ->from($settings[0]->getSmtpemail())
                     ->to($form['email']->getData())
@@ -103,7 +102,7 @@ class HomeController extends AbstractController
                             ============================================
                         <br>" . $settings[0]->getCompany() . "<br> Address:" . $settings[0]->getAddress() . "<br> Phone:" . $settings[0]->getPhone() . "<br>"
                     );
-                $transport = new GmailTransport($settings[0]->getSmtpemail(),$settings[0]->getSmtppassword());
+                $transport = new GmailSmtpTransport($settings[0]->getSmtpemail(),$settings[0]->getSmtppassword());
                 $mailer = new  Mailer($transport);
                 $mailer->send($email);
 
