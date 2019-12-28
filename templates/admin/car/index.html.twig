@@ -48,7 +48,7 @@
                                 <tr>
                                     <td>
                                         <a href="javascript:window.open('{{ path('image_new',{'id': car.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
-                                            <img src="{{ asset('assets/admin/icons/gallery.png') }}" height="40"></a>
+                                            <img src="{{ asset('assets/admin/icons') }}/gallery.png" height="40" title="Image Gallery"></a>
                                     </td>
                                     <td>{{ car.id }}</td>
                                     <td>{{ car.title }}</td>
@@ -60,6 +60,10 @@
                                     <td>{{ car.updated_at ? car.updated_at|date('Y-m-d H:i:s') : '' }}</td>
                                     <td>{{ car.catname }}</td>
                                     <td>{{ car.contract_id }}</td>
+                                    <td>
+                                        <a href="javascript:window.open('{{ path('admin_contract_new',{'id': car.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
+                                            <img src="{{ asset('assets/admin/icons') }}/contract.png" height="40" title="Contracts"></a>
+                                    </td>
                                     <td>{{ car.rate }}</td>
                                     <td>{{ car.seats }}</td>
                                     <td>{{ car.doors }}</td>
