@@ -3,12 +3,13 @@
 {% block title %}Contract index{% endblock %}
 
 {% block body %}
-    <h1>Contract index</h1>
+    <h1>Contracts of {{ car.title }}</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Status</th>
                 <th>Customer_id</th>
                 <th>Pickup_date</th>
                 <th>Dropoff_date</th>
@@ -21,6 +22,7 @@
         {% for contract in contracts %}
             <tr>
                 <td>{{ contract.id }}</td>
+                <td>{{ contract.status }}</td>
                 <td>{{ contract.customerId }}</td>
                 <td>{{ contract.pickupDate ? contract.pickupDate|date('Y-m-d') : '' }}</td>
                 <td>{{ contract.dropoffDate ? contract.dropoffDate|date('Y-m-d') : '' }}</td>
@@ -38,6 +40,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('admin_contract_new') }}">Create new</a>
 {% endblock %}

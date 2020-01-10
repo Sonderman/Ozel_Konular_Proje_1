@@ -12,26 +12,28 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/contract")
+ * @Route("/admin/contract")
  */
 class ContractController extends AbstractController
 {
     /**
-     * @Route("/", name="admin_contract_index", methods={"GET"})
+     * @Route("/{id}", name="admin_contract_index", methods={"GET"})
      */
-    public function index(ContractRepository $contractRepository): Response
+    public function index($id,ContractRepository $contractRepository,CarRepository $carRepository): Response
     {
+        $car = $carRepository->findOneBy(['id'=>$id]);
         return $this->render('admin/contract/index.html.twig', [
             'contracts' => $contractRepository->findAll(),
+            'car'=>$car,
         ]);
     }
 
     /**
-     * @Route("/new/{id}", name="admin_contract_new", methods={"GET","POST"})
+     * @Route("/new", name="admin_contract_new", methods={"GET","POST"})
      */
-    public function new(Request $request,$id,CarRepository $carRepository): Response
+    public function new(Request $request): Response
     {
-        $car = $carRepository->findOneBy(['id'=>$id]);
+
         $contract = new Contract();
         $form = $this->createForm(ContractType::class, $contract);
         $form->handleRequest($request);
@@ -46,7 +48,7 @@ class ContractController extends AbstractController
         }
 
         return $this->render('admin/contract/new.html.twig', [
-            'car' => $car,
+
             'contract' => $contract,
             'form' => $form->createView(),
         ]);
