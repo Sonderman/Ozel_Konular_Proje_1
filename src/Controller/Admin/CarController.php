@@ -22,8 +22,8 @@ class CarController extends AbstractController
     public function index(CarRepository $carRepository): Response
     {
         $cars = $carRepository->getAllCars();
-       // dump($cars);
-       // die();
+        //dump($cars);
+        //die();
         return $this->render('admin/car/index.html.twig', [
             'cars' => $cars,
         ]);
@@ -55,7 +55,10 @@ class CarController extends AbstractController
                 }
                 $car->setImage($fileName);
             }
+
             // resim upload kodları burada bitiyor
+            $car->setCreatedAt(new \DateTime());
+
             $entityManager->persist($car);
             $entityManager->flush();
 

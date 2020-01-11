@@ -34,8 +34,6 @@ class Car
      */
     private $description;
 
-
-
     /**
      * @ORM\Column(type="string", length=30, nullable=true)
      */
@@ -132,16 +130,6 @@ class Car
     private $category;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Contract", inversedBy="car", cascade={"persist", "remove"})
-     */
-    private $contract;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Admin\Comment", mappedBy="car")
-     */
-    private $comments;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $detail;
@@ -164,7 +152,6 @@ class Car
     public function __construct()
     {
 
-        $this->comments = new ArrayCollection();
         $this->images = new ArrayCollection();
     }
 
@@ -229,8 +216,8 @@ class Car
 
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
-        $this->created_at = $created_at;
-
+        //$this->created_at = $created_at;
+        $this->created_at = new \DateTime("now");
         return $this;
     }
 
@@ -241,7 +228,7 @@ class Car
 
     public function setUpdatedAt(?\DateTimeInterface $updated_at): self
     {
-        $this->updated_at = $updated_at;
+        $this->updated_at = new \DateTime("now");
 
         return $this;
     }

@@ -4,7 +4,9 @@ namespace App\Controller\Home;
 
 use App\Entity\Admin\Messages;
 use App\Entity\Car;
+use App\Entity\Contract;
 use App\Form\Admin\MessagesType;
+use App\Form\ContractType;
 use App\Repository\Admin\CommentRepository;
 use App\Repository\CarRepository;
 use App\Repository\CategoryRepository;
@@ -57,6 +59,34 @@ class HomeController extends AbstractController
             'car' => $car,
             'images'=> $images,
             'comments'=>$comments
+        ]);
+    }
+    /**
+     * @Route("/contractform/{id}", name="contract_form", methods={"GET","POST"})
+     */
+    public function contractform(Car $car,$id,Request $request,ImageRepository $imageRepository,UserRepository $userRepository): Response
+    {
+        //dump($car);
+       // die();
+        $contract = new Contract();
+        $form = $this->createForm(ContractType::class, $contract);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contract);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
+        $users = $userRepository->findAll();
+        $images = $imageRepository->findBy(['car' => $id]);
+        return $this->render('home/SinglePages/ContractForm.html.twig', [
+            'form'=> $form->createView(),
+            'car' => $car,
+            'users' => $users,
+            'images'=> $images,
         ]);
     }
 

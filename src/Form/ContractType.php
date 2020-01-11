@@ -13,13 +13,11 @@ class ContractType extends AbstractType
     {
         $builder
             ->add('customer_id')
-            ->add('customer')
-            ->add('car')
-            ->add('pickup_date')
-            ->add('dropoff_date')
-            ->add('pickup_location')
-            ->add('dropoff_location')
-            ->add('status')
+            ->add('car_id')
+            ->add('pick_up_date')
+            ->add('drop_off_date')
+            ->add('pick_up_location')
+            ->add('drop_off_location')
         ;
     }
 

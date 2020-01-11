@@ -16,20 +16,24 @@
                 <td>{{ contract.customerId }}</td>
             </tr>
             <tr>
-                <th>Pickup_date</th>
-                <td>{{ contract.pickupDate ? contract.pickupDate|date('Y-m-d') : '' }}</td>
+                <th>Car_id</th>
+                <td>{{ contract.carId }}</td>
             </tr>
             <tr>
-                <th>Dropoff_date</th>
-                <td>{{ contract.dropoffDate ? contract.dropoffDate|date('Y-m-d') : '' }}</td>
+                <th>Pick_up_date</th>
+                <td>{{ contract.pickUpDate ? contract.pickUpDate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Pickup_location</th>
-                <td>{{ contract.pickupLocation }}</td>
+                <th>Drop_off_date</th>
+                <td>{{ contract.dropOffDate ? contract.dropOffDate|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Dropoff_location</th>
-                <td>{{ contract.dropoffLocation }}</td>
+                <th>Pick_up_location</th>
+                <td>{{ contract.pickUpLocation }}</td>
+            </tr>
+            <tr>
+                <th>Drop_off_location</th>
+                <td>{{ contract.dropOffLocation }}</td>
             </tr>
         </tbody>
     </table>

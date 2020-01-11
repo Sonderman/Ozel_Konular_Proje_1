@@ -22,144 +22,98 @@ class Contract
     private $customer_id;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $pickup_date;
+    private $car_id;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $dropoff_date;
+    private $pick_up_date;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $pickup_location;
+    private $drop_off_date;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $dropoff_location;
+    private $pick_up_location;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Car", mappedBy="contract", cascade={"persist", "remove"})
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $car;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="contracts")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $customer;
-
-    /**
-     * @ORM\Column(type="string", length=20, nullable=true)
-     */
-    private $status;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    private $drop_off_location;
 
     public function getCustomerId(): ?int
     {
         return $this->customer_id;
     }
 
-    public function setCustomerId(int $customer_id): self
+    public function setCustomerId(?int $customer_id): self
     {
         $this->customer_id = $customer_id;
 
         return $this;
     }
 
-    public function getPickupDate(): ?\DateTimeInterface
+    public function getCarId(): ?int
     {
-        return $this->pickup_date;
+        return $this->car_id;
     }
 
-    public function setPickupDate(\DateTimeInterface $pickup_date): self
+    public function setCarId(?int $car_id): self
     {
-        $this->pickup_date = $pickup_date;
+        $this->car_id = $car_id;
 
         return $this;
     }
 
-    public function getDropoffDate(): ?\DateTimeInterface
+    public function getPickUpDate(): ?\DateTimeInterface
     {
-        return $this->dropoff_date;
+        return $this->pick_up_date;
     }
 
-    public function setDropoffDate(\DateTimeInterface $dropoff_date): self
+    public function setPickUpDate(?\DateTimeInterface $pick_up_date): self
     {
-        $this->dropoff_date = $dropoff_date;
+        $this->pick_up_date = $pick_up_date;
 
         return $this;
     }
 
-    public function getPickupLocation(): ?string
+    public function getDropOffDate(): ?\DateTimeInterface
     {
-        return $this->pickup_location;
+        return $this->drop_off_date;
     }
 
-    public function setPickupLocation(string $pickup_location): self
+    public function setDropOffDate(?\DateTimeInterface $drop_off_date): self
     {
-        $this->pickup_location = $pickup_location;
+        $this->drop_off_date = $drop_off_date;
 
         return $this;
     }
 
-    public function getDropoffLocation(): ?string
+    public function getPickUpLocation(): ?string
     {
-        return $this->dropoff_location;
+        return $this->pick_up_location;
     }
 
-    public function setDropoffLocation(string $dropoff_location): self
+    public function setPickUpLocation(?string $pick_up_location): self
     {
-        $this->dropoff_location = $dropoff_location;
+        $this->pick_up_location = $pick_up_location;
 
         return $this;
     }
 
-    public function getCar(): ?Car
+    public function getDropOffLocation(): ?string
     {
-        return $this->car;
+        return $this->drop_off_location;
     }
 
-    public function setCar(?Car $car): self
+    public function setDropOffLocation(?string $drop_off_location): self
     {
-        $this->car = $car;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newContract = null === $car ? null : $this;
-        if ($car->getContract() !== $newContract) {
-            $car->setContract($newContract);
-        }
-
-        return $this;
-    }
-
-    public function getCustomer(): ?Customer
-    {
-        return $this->customer;
-    }
-
-    public function setCustomer(?Customer $customer): self
-    {
-        $this->customer = $customer;
-
-        return $this;
-    }
-
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(?string $status): self
-    {
-        $this->status = $status;
+        $this->drop_off_location = $drop_off_location;
 
         return $this;
     }
