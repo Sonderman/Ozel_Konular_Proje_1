@@ -1,33 +1,45 @@
-{% extends 'base.html.twig' %}
+{% extends 'Adminbase.html.twig' %}
 
-{% block title %}Contract index{% endblock %}
+{% block title %}Category Home Page{% endblock %}
 
 {% block body %}
-    <h1>Contract index</h1>
 
-    <table class="table">
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card" style="padding: 30px">
+
+
+                <h1>Category index</h1>
+                <div class="body table-responsive">
+                    <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Customer_id</th>
-                <th>Car_id</th>
-                <th>Pick_up_date</th>
-                <th>Drop_off_date</th>
-                <th>Pick_up_location</th>
-                <th>Drop_off_location</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Customer_id</th>
+            <th>Car_id</th>
+            <th>Pick_up_date</th>
+            <th>Drop_off_date</th>
+            <th>Pick_up_location</th>
+            <th>Drop_off_location</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for contract in contracts %}
             <tr>
-                <td>{{ contract.id }}</td>
-                <td>{{ contract.customerId }}</td>
-                <td>{{ contract.carId }}</td>
-                <td>{{ contract.pickUpDate ? contract.pickUpDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ contract.dropOffDate ? contract.dropOffDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ contract.pickUpLocation }}</td>
-                <td>{{ contract.dropOffLocation }}</td>
+                <td>
+                    <a href="{{ path('admin_user_show',{ 'id': contract.customer_id }) }}">
+                        {{ contract.name }} {{ contract.surname }}
+                    </a>
+                </td>
+                <td>{{ contract.customer_id }}</td>
+                <td>{{ contract.car_id }}</td>
+                <td>{{ contract.pick_up_date ? contract.pick_up_date : '' }}</td>
+                <td>{{ contract.drop_off_date ? contract.drop_off_date : '' }}</td>
+                <td>{{ contract.pick_up_location }}</td>
+                <td>{{ contract.drop_off_location }}</td>
                 <td>
                     <a href="{{ path('admin_contract_show', {'id': contract.id}) }}">show</a>
                     <a href="{{ path('admin_contract_edit', {'id': contract.id}) }}">edit</a>
@@ -40,6 +52,13 @@
         {% endfor %}
         </tbody>
     </table>
+                </div>
 
-    <a href="{{ path('admin_contract_new') }}">Create new</a>
+                <a href="{{ path('admin_contract_new') }}" class="btn bg-deep-purple waves-effect">Create new</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

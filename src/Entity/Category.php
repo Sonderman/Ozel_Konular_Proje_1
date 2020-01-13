@@ -164,7 +164,7 @@ class Category
 
     public function setUpdatedAt(?\DateTimeInterface $updated_at): self
     {
-        $this->updated_at = $updated_at;
+        $this->updated_at = new \DateTime("now");
 
         return $this;
     }

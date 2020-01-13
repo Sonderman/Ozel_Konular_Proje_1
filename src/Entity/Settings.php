@@ -312,12 +312,6 @@ class Settings
         return $this;
     }
 
-
-
-
-
-
-
     public function getStatus(): ?string
     {
         return $this->status;

@@ -216,8 +216,7 @@ class Car
 
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
-        //$this->created_at = $created_at;
-        $this->created_at = new \DateTime("now");
+        $this->created_at = $created_at;
         return $this;
     }
 

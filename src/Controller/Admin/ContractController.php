@@ -16,12 +16,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContractController extends AbstractController
 {
     /**
-     * @Route("/", name="admin_contract_index", methods={"GET"})
+     * @Route("/{slug}", name="admin_contract_index", methods={"GET"})
      */
-    public function index(ContractRepository $contractRepository): Response
+    public function index(ContractRepository $contractRepository,$slug): Response
     {
+
+        $contracts =$contractRepository->getContracts($slug);
+        //dump($contracts);
+        //die();
         return $this->render('admin/contract/index.html.twig', [
-            'contracts' => $contractRepository->findAll(),
+            'contracts' =>$contracts,
         ]);
     }
 
@@ -49,7 +53,7 @@ class ContractController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="admin_contract_show", methods={"GET"})
+     * @Route("/show/{id}", name="admin_contract_show", methods={"GET"})
      */
     public function show(Contract $contract): Response
     {
@@ -63,15 +67,16 @@ class ContractController extends AbstractController
      */
     public function edit(Request $request, Contract $contract): Response
     {
-        $form = $this->createForm(Contract1Type::class, $contract);
+        $form = $this->createForm(ContractType::class, $contract);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('admin_contract_index');
+            $status=$form['status']->getData();
+            return $this->redirectToRoute('admin_contract_index',['slug'=>$status]);
         }
-
+        //dump($contract);
+       // die();
         return $this->render('admin/contract/edit.html.twig', [
             'contract' => $contract,
             'form' => $form->createView(),

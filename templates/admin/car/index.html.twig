@@ -60,7 +60,7 @@
                                     <td>{{ car.updated_at ? car.updated_at|date('Y-m-d H:i:s') : '' }}</td>
                                     <td>{{ car.catname }}</td>
                                     <td>
-                                        <a href="javascript:window.open('{{ path('admin_contract_index',{'id': car.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
+                                        <a href="javascript:window.open('{{ path('admin_car_index',{'id': car.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
                                             <img src="{{ asset('assets/admin/icons') }}/contract.png" height="40" title="Contracts"></a>
                                     </td>
                                     <td>{{ car.rate }}</td>

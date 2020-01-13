@@ -5,6 +5,7 @@ namespace App\Controller\Home;
 use App\Entity\Admin\Messages;
 use App\Entity\Car;
 use App\Entity\Contract;
+use App\Entity\User;
 use App\Form\Admin\MessagesType;
 use App\Form\ContractType;
 use App\Repository\Admin\CommentRepository;
@@ -71,17 +72,25 @@ class HomeController extends AbstractController
         $contract = new Contract();
         $form = $this->createForm(ContractType::class, $contract);
         $form->handleRequest($request);
+        $submittedToken = $request->request->get('token');
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted()&& $this->isCsrfTokenValid('form-contract', $submittedToken)) {
             $entityManager = $this->getDoctrine()->getManager();
+            //dump($form);
+            //die();
+            $contract->setCarId($id);
+            $contract->setCustomerId($this->getUser()->getId());
+            $contract->setStatus("New");
             $entityManager->persist($contract);
             $entityManager->flush();
+            $this->addFlash('success', 'Succesfull');
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('contract_form',['id'=>$id]);
         }
 
         $users = $userRepository->findAll();
         $images = $imageRepository->findBy(['car' => $id]);
+
         return $this->render('home/SinglePages/ContractForm.html.twig', [
             'form'=> $form->createView(),
             'car' => $car,

@@ -18,7 +18,14 @@ class ContractRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Contract::class);
     }
-
+    public function  getContracts($status): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT usr.name,usr.surname,cnt.* FROM contract cnt JOIN user usr ON usr.id = cnt.customer_id WHERE cnt.status = :status ORDER BY cnt.id DESC';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['status'=>$status]);
+        return $stmt->fetchAll();
+    }
     // /**
     //  * @return Contract[] Returns an array of Contract objects
     //  */

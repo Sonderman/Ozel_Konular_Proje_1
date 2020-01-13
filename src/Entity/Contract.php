@@ -27,12 +27,12 @@ class Contract
     private $car_id;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $pick_up_date;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $drop_off_date;
 
@@ -45,6 +45,16 @@ class Contract
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $drop_off_location;
+
+    /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $status;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 
     public function getCustomerId(): ?int
     {
@@ -70,24 +80,24 @@ class Contract
         return $this;
     }
 
-    public function getPickUpDate(): ?\DateTimeInterface
+    public function getPickUpDate(): ?string
     {
         return $this->pick_up_date;
     }
 
-    public function setPickUpDate(?\DateTimeInterface $pick_up_date): self
+    public function setPickUpDate(?string $pick_up_date): self
     {
         $this->pick_up_date = $pick_up_date;
 
         return $this;
     }
 
-    public function getDropOffDate(): ?\DateTimeInterface
+    public function getDropOffDate(): ?string
     {
         return $this->drop_off_date;
     }
 
-    public function setDropOffDate(?\DateTimeInterface $drop_off_date): self
+    public function setDropOffDate(?string $drop_off_date): self
     {
         $this->drop_off_date = $drop_off_date;
 
@@ -114,6 +124,18 @@ class Contract
     public function setDropOffLocation(?string $drop_off_location): self
     {
         $this->drop_off_location = $drop_off_location;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
