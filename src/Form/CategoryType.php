@@ -22,7 +22,7 @@ class CategoryType extends AbstractType
             ->add('image',FileType::class,[
                 'label' => 'Category Image',
                 'mapped'=> false,
-                'required'=> true,
+                'required'=> false,
                 'constraints'=> [
                     new File([
                         'maxSize'=>'4096k',

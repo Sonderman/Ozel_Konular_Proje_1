@@ -111,6 +111,9 @@ class UserController extends AbstractController
                     )
                 );
             }
+            $entityManager = $this->getDoctrine()->getManager();
+            $user->setUpdatedAt();
+            $entityManager->persist($user);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_user_index');

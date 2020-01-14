@@ -41,16 +41,8 @@
                             <table class="table">
                                 <tbody>
                                 <tr>
-                                    <th>Id</th>
-                                    <td>{{ app.user.id }}</td>
-                                </tr>
-                                <tr>
                                     <th>Email</th>
                                     <td>{{ app.user.email }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Roles</th>
-                                    <td>{{ app.user.roles ? app.user.roles|json_encode : '' }}</td>
                                 </tr>
 
                                 <tr>
@@ -61,25 +53,12 @@
                                     <th>Surname</th>
                                     <td>{{ app.user.surname }}</td>
                                 </tr>
-                                <tr>
-                                    <th>Image</th>
-                                    <td>{{ app.user.image }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Status</th>
-                                    <td>{{ app.user.status }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Created_at</th>
-                                    <td>{{ app.user.createdAt ? app.user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Updated_at</th>
-                                    <td>{{ app.user.updatedAt ? app.user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                                </tr>
+
                                 </tbody>
                             </table>
-                            <a href="{{ path('user_edit', {'id': app.user.id}) }}">Edit Profile</a>
+
+                                <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="map-show">Edit Profile</a>
+
                         </div>
                     </article>
 

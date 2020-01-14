@@ -22,10 +22,11 @@ class CarRepository extends ServiceEntityRepository
     public function  getAllCars(): array
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT cr.*,cat.title as catname, u.name,u.surname FROM car cr
+        $sql = 'SELECT cr.*,cat.title as catname, u.name,u.surname 
+                FROM car cr
                 JOIN category cat ON cat.id = cr.category_id  
                 JOIN user u ON u.id = cr.owner_id
-                ORDER BY cat.title ASC ';
+                ORDER BY cr.id DESC ';
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();

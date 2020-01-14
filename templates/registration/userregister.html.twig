@@ -30,7 +30,7 @@
                         <div class="login-form">
                             <h3>Sign Up</h3>
                             <form name="user" method="post" enctype="multipart/form-data">
-                                <input type="file" id="user_image" name="user[image]" required="required" class="form-control"/>
+
                                 <div class="name">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -56,6 +56,10 @@
                                            name="user[password]"
                                            required="required" placeholder="Password">
                                 </div>
+                                <div class="center" >
+                                    <input style="padding: 30px" type="file" id="user_image" name="user[image]" required="required" class="form-control"/>
+                                </div>
+
                                 <div class="log-btn">
                                     <input type="hidden" id="user_status"
                                            name="user[status]" value="New">

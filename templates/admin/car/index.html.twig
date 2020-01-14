@@ -9,7 +9,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card" style="padding: 30px">
 
-                    <h1>Car index</h1>
+                    <h1>All Cars</h1>
 
                     <div class="body table-responsive">
                         <table class="table table-hover">
@@ -22,6 +22,9 @@
                                 <th>Keywords</th>
                                 <th>Description</th>
                                 <th>Image</th>
+
+                                <th>Using by</th>
+
                                 <th>Status</th>
                                 <th>Created_at</th>
                                 <th>Updated_at</th>
@@ -39,7 +42,7 @@
                                 <th>Model</th>
                                 <th>Year</th>
                                 <th>Price_for_a_day</th>
-                                <th>Owner</th>
+
                                 <th>actions</th>
                             </tr>
                             </thead>
@@ -55,14 +58,32 @@
                                     <td>{{ car.keywords }}</td>
                                     <td>{{ car.description }}</td>
                                     <td><img src="{{ asset('uploads/images/' ~ car.image) }}" height="40"></td>
+                                    {% if(car.owner_id != 1)%}
+                                    <td>
+                                        <a href="{{ path('admin_user_show', {'id': car.owner_id}) }}">
+                                            {{ car.name }} {{ car.surname }}
+                                        </a>
+                                    </td>
+                                        {% else %}
+                                        <td>
+                                            Not Reserved
+                                        </td>
+                                    {% endif %}
+
                                     <td>{{ car.status }}</td>
                                     <td>{{ car.created_at ? car.created_at|date('Y-m-d H:i:s') : '' }}</td>
                                     <td>{{ car.updated_at ? car.updated_at|date('Y-m-d H:i:s') : '' }}</td>
                                     <td>{{ car.catname }}</td>
+                                    {% if(car.contract_id != null) %}
                                     <td>
-                                        <a href="javascript:window.open('{{ path('admin_car_index',{'id': car.id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
-                                            <img src="{{ asset('assets/admin/icons') }}/contract.png" height="40" title="Contracts"></a>
+                                        <a href="javascript:window.open('{{ path('admin_contract_show',{'id': car.contract_id}) }}','','toolbar=no,location=no,directories=0,status=no,top=50,left=100,menuBar=no,scrollBars=yes,resizeable=no,width=900,height=600');">
+                                            <img src="{{ asset('assets/admin/icons') }}/contract.png" height="40" title="Contract"></a>
                                     </td>
+                                    {% else %}
+                                        <td>
+                                           Has No Active Contract
+                                        </td>
+                                    {% endif %}
                                     <td>{{ car.rate }}</td>
                                     <td>{{ car.seats }}</td>
                                     <td>{{ car.doors }}</td>
@@ -75,11 +96,7 @@
                                     <td>{{ car.model }}</td>
                                     <td>{{ car.year }}</td>
                                     <td>{{ car.price_for_a_day }}</td>
-                                    <td>
-                                        <a href="{{ path('admin_user_show', {'id': car.owner_id}) }}">
-                                            {{ car.name }} {{ car.surname }}
-                                        </a>
-                                    </td>
+
                                     <td>
                                         <a href="{{ path('admin_car_show', {'id': car.id}) }}"
                                            class="btn bg-deep-purple waves-effect">show</a>

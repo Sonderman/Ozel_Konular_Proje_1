@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * @Route("/admin/category")
@@ -51,6 +52,7 @@ class CategoryController extends AbstractController
                 }
                 $category->setImage($fileName);
             }
+            $category->setCreatedAt(new \DateTime());
             $entityManager->persist($category);
             $entityManager->flush();
 
@@ -102,6 +104,9 @@ class CategoryController extends AbstractController
                 }
                 $category->setImage($fileName);
             }
+            $entityManager = $this->getDoctrine()->getManager();
+            $category->setUpdatedAt();
+            $entityManager->persist($category);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('category_index');

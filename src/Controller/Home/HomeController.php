@@ -29,12 +29,12 @@ class HomeController extends AbstractController
     public function index(SettingsRepository $settingsRepository, CarRepository $carRepository,CategoryRepository $categoryRepository)
     {
         $data = $settingsRepository->findBy(['id' => 1]);
-        $slider = $carRepository->findBy([], ['title' => 'ASC'], 6);
-        $cars = $carRepository->findBy([], [], 10);
+        $slider = $carRepository->findBy([], ['title' => 'ASC'], 7);
+        $cars = $carRepository->findAll();
         $newcars = $carRepository->findBy([], ['title' => 'DESC'], 5);
         $category = $categoryRepository->findAll();
-       // dump($category);
-       // die();
+        //dump($slider);
+        //die();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'data' => $data,
@@ -53,7 +53,7 @@ class HomeController extends AbstractController
         $users = $userRepository->findAll();
         $images = $imageRepository->findBy(['car' => $id]);
         $comments = $commentRepository->findBy(['carid' => $id,'status'=>'True']);
-        //dump($comments);
+        //dump($images);
         //die();
         return $this->render('home/SinglePages/CarShow.html.twig', [
             'users' => $users,
@@ -70,6 +70,7 @@ class HomeController extends AbstractController
         //dump($car);
        // die();
         $contract = new Contract();
+        $user = $this->getUser();
         $form = $this->createForm(ContractType::class, $contract);
         $form->handleRequest($request);
         $submittedToken = $request->request->get('token');
@@ -85,8 +86,15 @@ class HomeController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', 'Succesfull');
 
+            $entityManager = $this->getDoctrine()->getManager();
+            $car->setOwnerId($user->getId());
+            $car->setUpdatedAt();
+            $entityManager->persist($car);
+            $entityManager->flush();
+
             return $this->redirectToRoute('contract_form',['id'=>$id]);
         }
+
 
         $users = $userRepository->findAll();
         $images = $imageRepository->findBy(['car' => $id]);

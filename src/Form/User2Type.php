@@ -14,20 +14,14 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class UserType extends AbstractType
+class User2Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('email')
-            ->add('roles', ChoiceType::class, [
-                'choices' => [
-                    'Admin' => 'ROLE_ADMIN',
-                    'User' => 'ROLE_USER',
-                ],
-            ])
-            ->add('password', PasswordType::class, [
 
+            ->add('password', PasswordType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
@@ -43,7 +37,6 @@ class UserType extends AbstractType
             ])
             ->add('name')
             ->add('surname')
-
             ->add('image', FileType::class, [
                 'label' => 'User Image',
                 'mapped' => false,
@@ -57,23 +50,23 @@ class UserType extends AbstractType
                         'mimeTypesMessage' => 'Lütfen geçerli bir resim dosyası yükleyin!',
                     ])
                 ]
-            ])
-
-            ->add('status', ChoiceType::class, [
-                'choices' => [
-                    'Active' => 'True',
-                    'Passive' => 'False'
-                ],
             ]);
-        $builder->get('roles')
-            ->addModelTransformer(new CallbackTransformer(
-                function ($rolesArray) {
-                    return count($rolesArray) ? $rolesArray[0] : null;
-                },
-                function ($rolesString) {
-                    return [$rolesString];
-                }
-            ));
+
+//            ->add('status', ChoiceType::class, [
+//                'choices' => [
+//                    'Active' => 'True',
+//                    'Passive' => 'False'
+//                ],
+//            ]);
+//        $builder->get('roles')
+//            ->addModelTransformer(new CallbackTransformer(
+//                function ($rolesArray) {
+//                    return count($rolesArray) ? $rolesArray[0] : null;
+//                },
+//                function ($rolesString) {
+//                    return [$rolesString];
+//                }
+//            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

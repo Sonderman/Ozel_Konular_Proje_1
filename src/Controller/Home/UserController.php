@@ -6,7 +6,7 @@ use App\Entity\Admin\Comment;
 use App\Entity\Contract;
 use App\Entity\User;
 use App\Form\Admin\CommentType;
-use App\Form\UserType;
+use App\Form\User2Type;
 use App\Repository\Admin\CommentRepository;
 use App\Repository\ContractRepository;
 use App\Repository\UserRepository;
@@ -127,7 +127,7 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, User $user,$id,UserPasswordEncoderInterface $passwordEncoder): Response
+    public function edit(Request $request, User $user2,$id,UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $user = $this->getUser();
 
@@ -135,7 +135,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_index');
         }
 
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(User2Type::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -152,6 +152,7 @@ class UserController extends AbstractController
 
                 }
                 $user->setImage($fileName);
+
                 // encode the plain password
                 $user->setPassword(
                     $passwordEncoder->encodePassword(
@@ -160,6 +161,10 @@ class UserController extends AbstractController
                     )
                 );
             }
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $user2->setUpdatedAt();
+            $entityManager->persist($user2);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_index');

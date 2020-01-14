@@ -3,8 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Car;
+use App\Entity\Image;
 use App\Form\CarType;
 use App\Repository\CarRepository;
+use App\Repository\ImageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,7 +34,7 @@ class CarController extends AbstractController
     /**
      * @Route("/new", name="admin_car_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,ImageRepository $imageRepository): Response
     {
         $car = new Car();
         $form = $this->createForm(CarType::class, $car);
@@ -57,10 +59,11 @@ class CarController extends AbstractController
             }
 
             // resim upload kodları burada bitiyor
+            $car->setOwnerId(1);
             $car->setCreatedAt(new \DateTime());
-
             $entityManager->persist($car);
             $entityManager->flush();
+
 
             return $this->redirectToRoute('admin_car_index');
         }
@@ -106,7 +109,9 @@ class CarController extends AbstractController
                 }
                 $car->setImage($fileName);
             }
-
+            $entityManager = $this->getDoctrine()->getManager();
+            $car->setUpdatedAt();
+            $entityManager->persist($car);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('admin_car_index');

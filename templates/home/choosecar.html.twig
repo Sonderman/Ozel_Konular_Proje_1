@@ -51,6 +51,7 @@
                                     <!-- Single Popular Car Start -->
                                     {% for pcar in cars %}
                                     {% if(pcar.rate >= 4.0) %}
+
                                     <div class="col-lg-4 col-md-6 {% for cat in category %} {% if( pcar.categoryId == cat.id) %} {{ cat.title }} {% endif %} {% endfor %}">
                                         <div class="single-popular-car">
                                             <div class="p-car-thumbnails">
@@ -69,10 +70,10 @@
                                                 <h5>RATE: {{ pcar.rate }}</h5>
 
                                                 <div class="p-car-feature">
-                                                    <a href="#">{{ pcar.year }}</a>
-                                                    <a href="#">{{ pcar.gearbox }}</a>
+                                                    <a >{{ pcar.year }}</a>
+                                                    <a >{{ pcar.gearbox }}</a>
                                                     {% if (pcar.hasAirconditions == 1) %}
-                                                    <a href="#">AIR CONDITION</a>
+                                                    <a >AIR CONDITION</a>
                                                     {% endif %}
                                                 </div>
                                             </div>
@@ -124,10 +125,10 @@
                                                 <h5>RATE: {{ pcar.rate }}</h5>
 
                                                 <div class="p-car-feature">
-                                                    <a href="#">{{ pcar.year }}</a>
-                                                    <a href="#">{{ pcar.gearbox }}</a>
+                                                    <a >{{ pcar.year }}</a>
+                                                    <a >{{ pcar.gearbox }}</a>
                                                     {% if (pcar.hasAirconditions == 1) %}
-                                                        <a href="#">AIR CONDITION</a>
+                                                        <a >AIR CONDITION</a>
                                                     {% endif %}
                                                 </div>
                                             </div>

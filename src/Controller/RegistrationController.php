@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Component\Validator\Constraints\Date;
 
 class RegistrationController extends AbstractController
 {
@@ -53,7 +54,7 @@ class RegistrationController extends AbstractController
                         $form->get('password')->getData()
                     )
                 );
-
+                $user->setCreatedAt(new \DateTime());
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);
                 $entityManager->flush();
@@ -110,6 +111,7 @@ class RegistrationController extends AbstractController
             );
 
             $entityManager = $this->getDoctrine()->getManager();
+            $user->setUpdatedAt();
             $entityManager->persist($user);
             $entityManager->flush();
 
