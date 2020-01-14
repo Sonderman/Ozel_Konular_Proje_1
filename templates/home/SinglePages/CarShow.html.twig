@@ -143,10 +143,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="input-submit center">
+                                                    {% if(app.user) %}
                                                     <form action="/contractform/{{ car.id }}">
-                                                        <button type="submit" style="width: 300px;height: 60px">BOOK</button>
+                                                        <button type="submit" style="width: 300px;height: 60px">BOOK NOW</button>
                                                     </form>
-
+                                                    {% else %}
+                                                    <form action="/login">
+                                                        <button type="submit" style="width: 300px;height: 60px">BOOK NOW</button>
+                                                    </form>
+                                                    {% endif %}
 
                                                 </div>
                                             </section>

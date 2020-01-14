@@ -1,0 +1,88 @@
+{% extends 'HomeBase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile{% endblock %}
+
+
+{% block body %}
+
+    <!--== Page Title Area Start ==-->
+    <section id="page-title-area" class="section-padding overlay">
+        <div class="container">
+            <div class="row">
+                <!-- Page Title Start -->
+                <div class="col-lg-12">
+                    <div class="section-title  text-center align-center">
+                        <h2>{{ app.user.name }} Profile</h2>
+                        <span class="title-line"><i class="fa fa-car"></i></span>
+
+                    </div>
+                </div>
+                <!-- Page Title End -->
+            </div>
+        </div>
+    </section>
+    <!--== Page Title Area End ==-->
+
+    <section id="maincontent" class="padding30">
+        <div class="container">
+            <div class="row">
+
+                {{ include('home/user/usermenu.html.twig') }}
+
+                <div class="span10">
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card" style="padding: 30px">
+                                    <h1>Contract</h1>
+
+                                    <div class="body table-responsive">
+                                        <table class="table table-hover">
+                                            <tbody>
+                                            <tr>
+                                                <th>Car Title</th>
+                                                <td><a href="{{ path('car_show',{ 'id': contract[0].carid }) }}">
+                                                        {{ contract[0].title }}
+                                                    </a></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Car Image</th>
+                                                <td>
+                                                    <img src="{{ asset('uploads/images/' ~ contract[0].image) }}"
+                                                         >
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Car_id</th>
+                                                <td>{{ contract[0].car_id }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pick_up_date</th>
+                                                <td>{{ contract[0].pick_up_date ? contract[0].pick_up_date : '' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Drop_off_date</th>
+                                                <td>{{ contract[0].drop_off_date ? contract[0].drop_off_date : '' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pick_up_location</th>
+                                                <td>{{ contract[0].pick_up_location }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Drop_off_location</th>
+                                                <td>{{ contract[0].drop_off_location }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <a href="/user/contracts" class="btn bg-green waves-effect">back to
+                                        list</a> <br><br>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

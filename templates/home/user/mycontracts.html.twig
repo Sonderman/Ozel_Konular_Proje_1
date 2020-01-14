@@ -1,0 +1,94 @@
+{% extends 'HomeBase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile{% endblock %}
+
+
+{% block body %}
+
+    <!--== Page Title Area Start ==-->
+    <section id="page-title-area" class="section-padding overlay">
+        <div class="container">
+            <div class="row">
+                <!-- Page Title Start -->
+                <div class="col-lg-12">
+                    <div class="section-title  text-center align-center">
+                        <h2>{{ app.user.name }} Profile</h2>
+                        <span class="title-line"><i class="fa fa-car"></i></span>
+
+                    </div>
+                </div>
+                <!-- Page Title End -->
+            </div>
+        </div>
+    </section>
+    <!--== Page Title Area End ==-->
+
+    <section id="maincontent" class="padding30">
+        <div class="container">
+            <div class="row">
+
+                {{ include('home/user/usermenu.html.twig') }}
+
+                <div class="span10">
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="card" style="padding: 30px">
+
+
+                                    <h1>Category index</h1>
+                                    <div class="body table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Car Name</th>
+                                                <th>Car Image</th>
+                                                <th>Pick_up_date</th>
+                                                <th>Drop_off_date</th>
+                                                <th>Pick_up_location</th>
+                                                <th>Drop_off_location</th>
+                                                <th>Status</th>
+                                                <th>actions</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for contract in contracts %}
+                                                <tr>
+                                                    <td>
+                                                        <a href="{{ path('car_show',{ 'id': contract.carid }) }}">
+                                                            {{ contract.title }}
+                                                        </a>
+                                                    </td>
+                                                    <td><img src="{{ asset('uploads/images/' ~ contract.image) }}"
+                                                             height="50"></td>
+                                                    <td>{{ contract.pick_up_date ? contract.pick_up_date : '' }}</td>
+                                                    <td>{{ contract.drop_off_date ? contract.drop_off_date : '' }}</td>
+                                                    <td>{{ contract.pick_up_location }}</td>
+                                                    <td>{{ contract.drop_off_location }}</td>
+                                                    <td>{{ contract.status }}</td>
+                                                    <td>
+                                                        <a href="{{ path('user_contractshow', {'id': contract.id}) }}">show</a>
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="8">no records found</td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+{% endblock %}

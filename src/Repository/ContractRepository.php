@@ -18,12 +18,41 @@ class ContractRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Contract::class);
     }
-    public function  getContracts($status): array
+
+    public function getContracts($status): array
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT usr.name,usr.surname,cnt.* FROM contract cnt JOIN user usr ON usr.id = cnt.customer_id WHERE cnt.status = :status ORDER BY cnt.id DESC';
+        $sql = 'SELECT usr.name,usr.surname,cnt.* 
+                FROM contract cnt 
+                JOIN user usr ON usr.id = cnt.customer_id 
+                WHERE cnt.status = :status 
+                ORDER BY cnt.id DESC';
         $stmt = $conn->prepare($sql);
-        $stmt->execute(['status'=>$status]);
+        $stmt->execute(['status' => $status]);
+        return $stmt->fetchAll();
+    }
+    public function getContractsForUser($id): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT cr.id AS carid,cr.title,cr.image,cnt.*
+                FROM contract cnt
+                JOIN car cr ON cr.id = cnt.car_id
+                WHERE cnt.customer_id = :userid
+                ORDER BY cnt.id DESC';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['userid' => $id]);
+        return $stmt->fetchAll();
+    }
+    public function getContractToShow($id): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT cr.id AS carid,cr.title,cr.image,cnt.*
+                FROM contract cnt
+                JOIN car cr ON cr.id = cnt.car_id
+                WHERE cnt.id = :id
+                ORDER BY cnt.id DESC';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id' => $id]);
         return $stmt->fetchAll();
     }
     // /**

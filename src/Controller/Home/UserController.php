@@ -3,10 +3,12 @@
 namespace App\Controller\Home;
 
 use App\Entity\Admin\Comment;
+use App\Entity\Contract;
 use App\Entity\User;
 use App\Form\Admin\CommentType;
 use App\Form\UserType;
 use App\Repository\Admin\CommentRepository;
+use App\Repository\ContractRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -43,11 +45,29 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/reservations", name="user_reservations", methods={"GET"})
+     * @Route("/contracts", name="user_contracts", methods={"GET"})
      */
-    public function reservations(): Response
+    public function contracts(ContractRepository $contractRepository): Response
     {
-        return $this->render('home/user/reservations.html.twig');
+        $user = $this->getUser();
+        $contracts = $contractRepository->getContractsForUser($user->getId());
+        //dump($contracts);
+        //die();
+        return $this->render('home/user/mycontracts.html.twig',[
+            'contracts'=>$contracts,
+        ]);
+    }
+    /**
+     * @Route("/contracts/{id}", name="user_contractshow", methods={"GET"})
+     */
+    public function contractshow($id,ContractRepository $contractRepository): Response
+    {
+        $contract = $contractRepository->getContractToShow($id);
+        //dump($contract);
+        //die();
+        return $this->render('home/user/contractshow.html.twig', [
+            'contract' => $contract,
+        ]);
     }
 
     /**
