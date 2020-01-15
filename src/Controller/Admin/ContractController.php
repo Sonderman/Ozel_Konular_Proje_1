@@ -55,9 +55,18 @@ class ContractController extends AbstractController
     /**
      * @Route("/show/{id}", name="admin_contract_show", methods={"GET"})
      */
-    public function show(Contract $contract): Response
+    public function popupshow(Contract $contract): Response
     {
         return $this->render('admin/contract/show.html.twig', [
+            'contract' => $contract,
+        ]);
+    }
+    /**
+     * @Route("/popupshow/{id}", name="admin_contract_popupshow", methods={"GET"})
+     */
+    public function show(Contract $contract): Response
+    {
+        return $this->render('admin/contract/popupshow.html.twig', [
             'contract' => $contract,
         ]);
     }

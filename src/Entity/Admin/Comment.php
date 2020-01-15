@@ -61,6 +61,11 @@ class Comment
      */
     private $carid;
 
+    public function __toString() :?string
+    {
+        return $this->created_at;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -143,9 +148,9 @@ class Comment
         return $this->updated_at;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(): self
     {
-        $this->updated_at = $updated_at;
+        $this->updated_at = new \DateTime("now");
 
         return $this;
     }

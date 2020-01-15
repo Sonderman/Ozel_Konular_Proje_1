@@ -23,8 +23,12 @@ class CarController extends AbstractController
     public function index(CarRepository $carRepository): Response
     {
         $user = $this->getUser();
+        $cars = $carRepository->getMyContractedCars($user->getId());
+        //dump($cars);
+        //die();
         return $this->render('home/car/index.html.twig', [
-            'cars' => $carRepository->findby(['owner_id'=>$user->getId()]),
+            //'cars' => $carRepository->findby(['owner_id'=>$user->getId()]),
+            'cars' => $cars,
         ]);
     }
 
@@ -33,6 +37,8 @@ class CarController extends AbstractController
      */
     public function show(Car $car): Response
     {
+        //dump($car);
+        //die();
         return $this->render('home/car/show.html.twig', [
             'car' => $car,
         ]);

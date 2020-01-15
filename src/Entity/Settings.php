@@ -92,13 +92,9 @@ class Settings
     private $twitter;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $aboutus;
-
-
-
-
 
     /**
      * @ORM\Column(type="string", length=15)

@@ -45,18 +45,21 @@
 
                         <div class="car-details-info">
                             <h4>Additional Info</h4>
-                            {{ car.detail | raw }}
+                            <div style="overflow-x:auto;height: 500px">
+                                {{ car.detail | raw }}
+                            </div>
+
 
 
                             <div class="review-area">
                                 <h3>Be the first to review “{{ car.title }}”</h3>
                                 <div class="review-star">
                                     <p class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star unmark"></i>
-                                        <i class="fa fa-star unmark"></i>
+                                        <i class="fa fa-star {% if(car.rate >= 1.0) %}{% else %}unmark{% endif %}"></i>
+                                        <i class="fa fa-star {% if(car.rate >= 2.0) %}{% else %}unmark{% endif %}"></i>
+                                        <i class="fa fa-star {% if(car.rate >= 3.0) %}{% else %}unmark{% endif %}"></i>
+                                        <i class="fa fa-star {% if(car.rate >= 4.0) %}{% else %}unmark{% endif %}"></i>
+                                        <i class="fa fa-star {% if(car.rate >= 5.0) %}{% else %}unmark{% endif %}"></i>
                                     </p>
                                 </div>
                             </div>
@@ -196,7 +199,7 @@
                                                             <p>{{ com.comment }}</p>
                                                             <hr>
                                                             <h4>Rate: {{ com.rate }}</h4>
-                                                            <small class="text-muted">{{ com.createdAt }}</small>
+                                                            <small class="text-muted">{{ com.createdAt|date('Y-m-d') }}</small>
                                                             </p>
                                                         </div>
                                                     </div>

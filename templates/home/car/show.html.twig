@@ -41,13 +41,14 @@
                                         <div class="body table-responsive">
                                             <table class="table table-hover">
                                                 <tbody>
-                                                <tr>
-                                                    <th>Id</th>
-                                                    <td>{{ car.id }}</td>
-                                                </tr>
+
                                                 <tr>
                                                     <th>Title</th>
-                                                    <td>{{ car.title }}</td>
+                                                    <td>
+                                                        <a href="{{ path('car_show', {'id': car.id}) }}">
+                                                            {{ car.title }}
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Keywords</th>
@@ -74,10 +75,7 @@
                                                     <th>Updated_at</th>
                                                     <td>{{ car.updatedAt ? car.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Category_id</th>
-                                                    <td>{{ car.categoryId }}</td>
-                                                </tr>
+
                                                 <tr>
                                                     <th>Contract_id</th>
                                                     <td>{{ car.contractId }}</td>
@@ -138,7 +136,7 @@
                                             </table>
                                         </div>
 
-                                        <a href="{{ path('user_car_index') }}" class="btn bg-green waves-effect">back to
+                                        <a href="{{ path('user_car_index') }}" class="map-show">back to
                                             list</a> <br><br>
                                     </div>
                                 </div>

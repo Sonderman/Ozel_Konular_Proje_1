@@ -22,9 +22,10 @@ class ContractRepository extends ServiceEntityRepository
     public function getContracts($status): array
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 'SELECT usr.name,usr.surname,cnt.* 
+        $sql = 'SELECT usr.name,usr.surname,cr.title,cnt.* 
                 FROM contract cnt 
                 JOIN user usr ON usr.id = cnt.customer_id 
+                JOIN car cr ON cr.id = cnt.car_id
                 WHERE cnt.status = :status 
                 ORDER BY cnt.id DESC';
         $stmt = $conn->prepare($sql);

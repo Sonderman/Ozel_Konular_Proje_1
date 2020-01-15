@@ -215,6 +215,7 @@ class UserController extends AbstractController
                 $comment->setIp($_SERVER['REMOTE_ADDR']);
                 $comment->setCarid($id);
                 $comment->setUserid($this->getUser()->getId());
+                $comment->setCreatedAt(new \DateTime("now"));
                 $entityManager->persist($comment);
                 $entityManager->flush();
                 $this->addFlash('success', 'Your comment has been sent succesfully');

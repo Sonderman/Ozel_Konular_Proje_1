@@ -16,8 +16,9 @@
                     <table class="table table-hover">
         <thead>
         <tr>
-            <th>Id</th>
+            <th>Name Surname</th>
             <th>Customer_id</th>
+            <th>Car Title</th>
             <th>Car_id</th>
             <th>Pick_up_date</th>
             <th>Drop_off_date</th>
@@ -35,6 +36,11 @@
                     </a>
                 </td>
                 <td>{{ contract.customer_id }}</td>
+                <td>
+                    <a href="{{ path('admin_car_show',{ 'id': contract.car_id }) }}">
+                        {{ contract.title }}
+                    </a>
+                </td>
                 <td>{{ contract.car_id }}</td>
                 <td>{{ contract.pick_up_date ? contract.pick_up_date : '' }}</td>
                 <td>{{ contract.drop_off_date ? contract.drop_off_date : '' }}</td>

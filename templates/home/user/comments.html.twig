@@ -60,7 +60,7 @@
                                             <td nowrap >
                                                 <a href="{{ path('car_show', {'id': comment.carid}) }}">{{ comment.title }}</a>
                                             </td>
-                                            <td>{{ comment.created_at }}</td>
+                                            <td>{{ comment.created_at|date('Y-m-d') }}</td>
                                             <td>{{ comment.rate }}</td>
                                             <td>
                                                 <a href="{{ path('admin_comment_delete', {'id': comment.id}) }}"

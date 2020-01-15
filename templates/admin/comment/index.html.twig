@@ -46,7 +46,7 @@
                                     <td>{{ comment.rate }}</td>
                                     <td>
                                         <a href="{{ path('admin_comment_show', {'id': comment.id}) }}"
-                                           class="btn bg-green waves-effect">show</a>
+                                           class="btn bg-green waves-effect">show</a> <br> <br>
                                         <a href="{{ path('admin_comment_edit', {'id': comment.id}) }}"
                                            class="btn bg-deep-purple waves-effect">edit</a>
                                     </td>
@@ -59,7 +59,7 @@
                             </tbody>
                         </table>
 
-                        <a href="{{ path('admin_comment_new') }}">Create new</a>
+                        <a href="{{ path('admin_comment_new') }}" class="btn bg-deep-purple waves-effect" >Create new</a>
                     </div>
                 </div>
             </div>

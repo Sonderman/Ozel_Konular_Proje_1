@@ -1,0 +1,67 @@
+<!-- Favicon-->
+<link rel="icon" href="{{ asset('assets') }}/admin/favicon.ico" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
+      type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+<!-- Bootstrap Core Css -->
+<link href="{{ asset('assets') }}/admin/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<!-- Waves Effect Css -->
+<link href="{{ asset('assets') }}/admin/plugins/node-waves/waves.css" rel="stylesheet"/>
+
+<!-- Animation Css -->
+<link href="{{ asset('assets') }}/admin/plugins/animate-css/animate.css" rel="stylesheet"/>
+
+<!-- Custom Css -->
+<link href="{{ asset('assets') }}/admin/css/style.css" rel="stylesheet">
+
+<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+<link href="{{ asset('assets') }}/admin/css/themes/all-themes.css" rel="stylesheet"/>
+
+<div style="margin:30px">
+    <div class="card" style="padding: 30px">
+                <h1>Contract</h1>
+
+                <div class="body table-responsive">
+                    <table class="table table-hover">
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ contract.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Customer_id</th>
+                            <td>{{ contract.customerId }}</td>
+                        </tr>
+                        <tr>
+                            <th>Car_id</th>
+                            <td>{{ contract.carId }}</td>
+                        </tr>
+                        <tr>
+                            <th>Pick_up_date</th>
+                            <td>{{ contract.pickUpDate ? contract.pickUpDate : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Drop_off_date</th>
+                            <td>{{ contract.dropOffDate ? contract.dropOffDate : '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Pick_up_location</th>
+                            <td>{{ contract.pickUpLocation }}</td>
+                        </tr>
+                        <tr>
+                            <th>Drop_off_location</th>
+                            <td>{{ contract.dropOffLocation }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+                {{ include('admin/contract/_delete_form.html.twig') }}
+    </div>
+</div>

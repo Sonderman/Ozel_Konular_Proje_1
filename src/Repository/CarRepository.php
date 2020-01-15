@@ -31,6 +31,17 @@ class CarRepository extends ServiceEntityRepository
         $stmt->execute();
         return $stmt->fetchAll();
     }
+    public function  getMyContractedCars($id): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT cnt.status AS cstatus,cr.*
+                FROM car cr
+                JOIN contract cnt ON cnt.customer_id = :id
+                WHERE cr.owner_id = :id';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['id'=>$id]);
+        return $stmt->fetchAll();
+    }
 
     // /**
     //  * @return Car[] Returns an array of Car objects

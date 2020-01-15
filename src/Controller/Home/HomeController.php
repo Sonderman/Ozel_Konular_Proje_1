@@ -89,6 +89,7 @@ class HomeController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $car->setOwnerId($user->getId());
             $car->setUpdatedAt();
+            $car->setContractId($contract->getId());
             $entityManager->persist($car);
             $entityManager->flush();
 
@@ -147,6 +148,7 @@ class HomeController extends AbstractController
             if ($this->isCsrfTokenValid('form-message', $submittedToken)) {
                 $entityManager = $this->getDoctrine()->getManager();
                 $message->setStatus('New');
+                $message->setCreatedAt(new \DateTime());
                 $message->setIp($_SERVER['REMOTE_ADDR']);
                 $entityManager->persist($message);
                 $entityManager->flush();
